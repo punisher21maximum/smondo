@@ -1,0 +1,158 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content1 %}
+    
+{% endblock content1 %}
+
+{% block content %}
+<!-- <div class="col-md-12"> -->
+  <div class="container filter_text" >
+    <div class="row">
+       <form method="GET">
+              <div class="form-row">
+<div class="form-group col-md-3 article-title"> 
+   {{ filter.form.desc|as_crispy_field }}
+   {{ filter.form.author|as_crispy_field }}
+   
+</div>
+                                    <div class="form-group col-md-3">
+                                      {{ filter.form.academic_year|as_crispy_field }}
+                                      {{ filter.form.sub|as_crispy_field }}    
+                                      {{ filter.form.branch|as_crispy_field }} 
+                                    </div>
+<div class="form-group col-md-3">
+  {{ filter.form.pracs_author|as_crispy_field }}
+  {{ filter.form.author_name|as_crispy_field }}
+  <button type="reset" class="text-center button_engg btn-block  mt-10">
+          <p class="text-center " >Clear</p>
+        </button>
+</div>
+
+                            <div class="form-group col-md-3">
+                                {{ filter.form.topic|as_crispy_field }}  
+                                {{ filter.form.question|as_crispy_field }}
+                                <button type="submit" class="text-center button_engg btn-block  mt-10">
+          <p class="text-center " >search</p>
+        </button>
+                            </div>
+
+          
+        </div>  
+      </form>
+    </div>
+  </div>  
+
+
+	<div class="row" style="padding:10px;">
+  <hr>
+    {% for prac in filter.qs %}
+
+<!-- card -->
+      <div class="card m-2 rounded-0 card_shadow" style="width: 17rem; ">
+
+        <a class="article-title" href="{% url 'pracs-detail' prac.id %}"><img style="height:200px; " class="card-img-top rounded-0" src="{{ prac.author.profile.image.url }}"  alt="..."></a>
+        
+        <br>
+        <div class="row">
+            <div class="col-6">
+                <p style="font-size: 15px; font-weight: 100;"></p>
+            </div>
+            <div class="col-6" style="text-align: right;">
+            <b><i>{{ prac.author|upper }}</i></b>
+            </div>
+        </div>
+
+        <div style="text-align: center; color:#5f4389;">
+            <p style="font-size: 20px; font-weight: 900;"> 
+                {{prac.academic_year}} &nbsp {{prac.branch}}  &nbsp {{prac.sub}}</p>  
+            <b style="color:#533b78;font:15px;"> 
+                Topic : {{prac.topic}}</b>
+            <p style="color:#533b66;font:10px;"> 
+                {{prac.question}}</p>
+        </div>
+        <hr>
+
+        <div class="container"  >
+
+                    <div class="row" style="color:#6b4c9a;font-size:18px; font-weight: 600;">
+                    <div class="col-sm-4">
+                       <p > </p> 
+                    </div>
+                    <div class="col-sm-5" style="font-size:15px;">
+                        {{prac.date_posted|date:"M d, y"}}
+                    </div>
+                    <div class="col-sm-3">
+                        star
+                    </div>
+                    </div>
+
+                    
+                    <div class="row" 
+                    style="color:#533b78; 
+                    font-size: 13px;
+                    font-weight: 600;">
+                        <div class="col-4">
+                            {{prac.pracs_author}}
+                        </div>
+                        <div class="col-4">
+                            pdf
+                        </div>
+                        <div class="col-4">
+                            <a href="{{ object.fileMy.url }}" target="_blank" >
+                              <button type="button" class="text-center  px-4">
+                                <i class="fa fa-download"></i>
+                              </button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="row" 
+                    style="color:#533b78; 
+                    font-size: 13px;
+                    font-weight: 600;">
+                        <div class="col-4">
+                            CS302  
+                        </div>
+                        <div class="col-4">
+                            1 file
+                        </div>
+                        <div class="col-4">
+                            23 pgs
+                        </div>
+                    </div>
+                </div>
+            <hr>
+                <p style="color:#533b78;padding:10px" >
+                    {{prac.desc}}</p>
+            
+      </div>
+<!-- card end -->
+
+    {% endfor %}
+   	</div>
+
+         <div class="my-4">
+    {% if is_paginated %}
+
+      {% if page_obj.has_previous %}
+        <a class="btn_all btn_pagi nounderline mb-4" href="?page=1">First</a>
+        <a class="btn_all btn_pagi nounderline mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="btn_all btn_pagi_outline nounderline mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a class="btn_all btn_pagi nounderline mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a class="btn_all btn_pagi nounderline mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a class="btn_all btn_pagi nounderline mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      {% endif %}
+
+    {% endif %}
+    </div>
+    
+{% endblock content %}

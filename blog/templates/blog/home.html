@@ -1,0 +1,57 @@
+{% extends "blog/base.html" %}
+{% block content1 %}
+    
+{% endblock content1 %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    {% for post in posts %}
+
+<!-- card -->
+    <div class="card m-2 rounded-0 card_shadow" style="width: 18rem; ">
+      <img class="rounded-0" style="height:200px"  src="{{ post.author.profile.image.url }}" class="card-img-top" alt="...">
+      <div class="card-body">
+
+        <b>
+          <a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title | truncatechars:23 }}</a>
+        </b>
+        <br>
+        <small>by</small>
+        <strong><a class="article-title" href="{% url 'user-posts' post.author.username %}">
+        	{{ post.author|upper }}</a></strong>
+          <br>
+        <small class="card-text">{{ post.content | truncatechars:50}}</small>
+    
+      </div>
+    </div>
+<!-- card end -->
+
+    {% endfor %}
+   	</div>
+<!-- </div> -->
+    <div class="my-4">
+    {% if is_paginated %}
+
+      {% if page_obj.has_previous %}
+        <a class="btn_all btn_pagi nounderline mb-4" href="?page=1">First</a>
+        <a class="btn_all btn_pagi nounderline mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="btn_all btn_pagi_outline nounderline mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a class="btn_all btn_pagi nounderline mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a class="btn_all btn_pagi nounderline mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a class="btn_all btn_pagi nounderline mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      {% endif %}
+
+    {% endif %}
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,81 @@
+{% extends "blog/base.html" %}
+{% block content %}
+  <article class="media content-section">
+   
+    <div class="media-body">
+
+      
+      <div class="container" style="text-align">
+        <!-- row1 -->
+        <div class="row">
+          <div class="col-2 mt-3" style="font-size:10px;color:#533b78;">
+            <p class="mb-0">{{object.pracs_author}}</p> 
+            <b>{{object.author_name}}</b>
+
+          </div>
+          <div class="col-2" style="font-size:30px;color:#533b78;">
+            <p >  <!-- prac unit --> </p>
+          </div>
+          <div class="col-5" style="font-size:30px;color:#533b78;">
+            <b>{{object.topic|upper}}</b>
+          </div>
+          <div class="col-3 text-align-right" style="text-align:right;">
+            <p class="mb-0"><i>Posted by </i> {{object.author}}</p>
+
+            <p class="mb-0">{{object.date_posted|date:"M d, y"}}</p>
+           
+          </div>
+        </div>
+        <!-- row2 -->
+        <div class="row">
+          <div class="col-2">
+            <p>CS302</p> 
+             
+          </div>
+          <div class="col-2" style="font-size:20px;color:#8465b3;">
+            <p >{{ object.academic_year }} &nbsp {{ object.branch }}</p>
+          </div>
+          <div class="col-5" style="font-size:20px;color:#8465b3;">
+            <b>{{object.sub}}</b>
+          </div>
+          <div class="col-3 text-align-right" style="text-align:right;">
+              <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}"><br>
+          </div>
+        </div>
+        <br>
+        <!-- row 3 -->
+        <div class="row">
+          <div class="col-9">
+            <p>{{object.desc}}</p> 
+          </div>
+          <div class="col-3">
+            {% if object.fileMy %}
+              <a href="{{ object.fileMy.url }}" target="_blank" >
+                <button type="button" class="text-center btn-lg ">
+                  Download
+                </button>
+              </a>
+            {% endif %} 
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      {% if object.fileMy %}
+        <embed src="{{ object.fileMy.url }}" width="100%" height="700px"> 
+      {% endif %}
+            <div class="article-metadata" style="text-align:right">
+        {% if object.author == user %}
+          <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'pracs-update' object.id %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'pracs-delete' object.id %}">Delete</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </article>
+  <br><br><br><br>
+{% endblock content %}
+
+<!-- <embed src="/media/Python.pdf"> -->
+<!-- <iframe href="{{ object.blog_file.url }}"></iframe> -->

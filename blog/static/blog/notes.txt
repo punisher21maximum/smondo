@@ -1,0 +1,25 @@
+# how to add css file
+
+step1 : where to store main.css
+blog/
+	static/
+		blog/
+			main.css 
+
+step2 : write code in main.css 
+
+step3 : how to load main.css file in base.html 
+
+1)at top load static folder : {{load static}}
+
+2)in head add main.css : 
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+
+#main blog
+#1 - get started with django
+step1 : create new project
+$ django-admin startproject weworkout // name of website
+s2 : go to weworkout
+# start : 
+step1 : 
+
