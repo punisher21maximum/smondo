@@ -1,10 +1,8 @@
 from django.contrib import admin
-from .models import Post, Enotes, QuesPaper, Pracs
+from .models import Post, Bike, Scooty, Mobile
 # Register your models here.
 
-
-
 admin.site.register(Post)
-admin.site.register(Enotes)
-admin.site.register(QuesPaper)
-admin.site.register(Pracs)
+admin.site.register(Bike)
+admin.site.register(Scooty)
+admin.site.register(Mobile)

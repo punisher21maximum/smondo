@@ -1,0 +1,143 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+  <div class="row px-5" >
+    {% for post in posts %}
+<!-- card -->
+      <div class="card m-2 rounded-0 card_shadow " style="width: 18rem; ">
+        <!-- <a class="article-title" href="{% url 'scootys-detail' post.id %}"><img style="height:200px; " class="card-img-top rounded-0" src="{{ post.img1.url }}"  alt="..."></a> -->
+        <!-- images -->
+        <div id="carouselExampleIndicators" class="carousel slide mb-3" data-ride="carousel" style="color:#6b4c9a">
+          <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+          </ol>
+          <div class="carousel-inner">
+          <div class="carousel-item active">
+            <a class="article-title" href="{% url 'scootys-detail' post.id %}"> 
+            <img class="d-block w-100" src="{{ post.img1.url }}" height="250px;" alt="First slide">
+            </a>   
+                <div class="carousel-caption d-none d-md-block">
+
+                </div>
+          </div>
+          <div class="carousel-item">
+            <a class="article-title" href="{% url 'scootys-detail' post.id %}">
+            <img class="d-block w-100" src="{{ post.img2.url }}" height="250px;" alt="Second slide">
+            </a>
+                <div class="carousel-caption d-none d-md-block">
+              
+                </div>
+          </div>
+          <div class="carousel-item">
+            <a class="article-title" href="{% url 'scootys-detail' post.id %}"> 
+            <img class="d-block w-100" src="{{ post.img3.url }}" height="250px;" alt="Third slide">
+            </a>
+                <div class="carousel-caption d-none d-md-block">
+                 
+                </div>
+          </div>
+          <div class="carousel-item">
+              <a class="article-title" href="{% url 'scootys-detail' post.id %}">
+              <img class="d-block w-100" src="{{ post.img4.url }}" height="250px;" alt="Third slide">
+              </a>    
+                  <div class="carousel-caption d-none d-md-block">
+                 
+                  </div>
+          </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+          </a>
+          </div>
+        <!-- images end -->
+        <div class="p-3">
+
+            <h5>Rs {{post.sell_price}}/-</h5> 
+            <!-- <small>{{post.date_posted|date:"M t, Y"}}</small> -->
+            <h7>{{post.title}}</h7>
+            <small> - {{post.desc|truncatechars:65}}</small>
+            <!-- price  -->
+            <table class="table table-hover mb-0" style="font-size: 12px;">
+              <tbody>
+                <tr>
+                  <th>Month</th>
+                  <td>{{post.rent_month}}/-</td>
+                  <th>Week</th>
+                  <td>{{post.rent_week}}/-</td>
+                </tr>
+                <tr>
+                  <th>Day</th>
+                  <td>{{post.rent_week}}/-</td>
+                  <th>Hour</th>
+                  <td>{{post.rent_hour}}/-</td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- price end  -->
+ 
+            <!-- details  -->
+            <table class="table table-hover" style="font-size: 12px;">
+                <tbody>
+                  <tr>
+                    <th>KM</th>
+                    <td>{{post.km}} km</td>
+                    <th>CC</th>
+                    <td>{{post.cc}} cc</td>
+                  </tr>
+                  <tr>
+                    <th>Year</th>
+                    <td>{{post.year}}</td>
+                    <th>Brand</th>
+                    <td>{{post.brand}}</td>
+                  </tr>
+                </tbody>
+            </table>
+            <!-- details end -->
+            <small>{{post.author.profile.phone_number}}, {{ post.author.profile.society }},
+                {{ post.author.profile.bldg }}, {{ post.author.profile.floor }}0{{ post.author.profile.flat_no }}</small>
+        </div>
+        
+            
+      </div>
+<!-- card end -->
+
+    {% endfor %}
+   	</div>
+
+         <div class="my-4">
+    {% if is_paginated %}
+
+      {% if page_obj.has_previous %}
+        <a class="btn_all btn_pagi nounderline mb-4" href="?page=1">First</a>
+        <a class="btn_all btn_pagi nounderline mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="btn_all btn_pagi_outline nounderline mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a class="btn_all btn_pagi nounderline mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a class="btn_all btn_pagi nounderline mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a class="btn_all btn_pagi nounderline mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      {% endif %}
+
+    {% endif %}
+    </div>
+    
+{% endblock content %}
+ 
