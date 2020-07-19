@@ -8,8 +8,8 @@ from .views import (
     # UserPostListView,
     #bike
     BikeCreateView,
-    BikeListView,
-    BikeDetailView,
+    BikeListView,  
+    BikeDetailView, BikeDetailView2,
     BikeUpdateView,
     BikeDeleteView,
     #scooty
@@ -39,6 +39,7 @@ urlpatterns = [
     path('bikes/new/', BikeCreateView.as_view(), name='bikes-create'),
     path('bikes/', BikeListView.as_view(), name='bikes-home'),
     path('bikes/<int:pk>/', BikeDetailView.as_view(), name='bikes-detail'),
+    path('<str:model>/<int:pk>/', BikeDetailView2.as_view(), name='subcat-detail'),#test-detail
     path('bikes/<int:pk>/update/', BikeUpdateView.as_view(), name='bikes-update'),
     path('bikes/<int:pk>/delete/', BikeDeleteView.as_view(), name='bikes-delete'),
     #scooty

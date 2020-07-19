@@ -8,7 +8,7 @@
   <div class="row px-5" >
     {% for post in posts %}
 <!-- card -->
-      <a class="article-title" href="{% url 'bikes-detail' post.id %}">
+ 
       <div class="card m-2 rounded-0 card_shadow " style="width: 18rem; ">
         <!-- <a class="article-title" href="{% url 'bikes-detail' post.id %}"><img style="height:200px; " class="card-img-top rounded-0" src="{{ post.img1.url }}"  alt="..."></a> -->
         <!-- images -->
@@ -21,7 +21,8 @@
           </ol>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <a class="article-title" href="{% url 'bikes-detail' post.id %}"> 
+              <a class="article-title" 
+              href="{% url 'subcat-detail' pk=post.id model='Bike' %}"> 
               <img class="d-block w-100" src="{{ post.img1.url }}" height="250px;" alt="First slide">
               </a>   
               <div class="carousel-caption d-none d-md-block">
@@ -29,7 +30,7 @@
               </div>
             </div>
             <div class="carousel-item">
-              <a class="article-title" href="{% url 'bikes-detail' post.id %}">
+              <a class="article-title" href="{% url 'bikes-detail' post.id  %}">
               <img class="d-block w-100" src="{{ post.img2.url }}" height="250px;" alt="Second slide">
               </a>
                   <div class="carousel-caption d-none d-md-block">
@@ -105,7 +106,7 @@
         
             
       </div>
-      </a> 
+        
 <!-- card end -->
 
     {% endfor %}
@@ -113,23 +114,7 @@
 <!-- pagination start -->
   <div class="my-4">
     {% if is_paginated %}
-      {% if page_obj.has_previous %}
-        <a class="btn_all btn_pagi nounderline mb-4" href="?page=1">First</a>
-        <a class="btn_all btn_pagi nounderline mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-      {% endif %}
-
-      {% for num in page_obj.paginator.page_range %}
-        {% if page_obj.number == num %}
-          <a class="btn_all btn_pagi_outline nounderline mb-4" href="?page={{ num }}">{{ num }}</a>
-        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-          <a class="btn_all btn_pagi nounderline mb-4" href="?page={{ num }}">{{ num }}</a>
-        {% endif %}
-      {% endfor %}
-
-      {% if page_obj.has_next %}
-        <a class="btn_all btn_pagi nounderline mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-        <a class="btn_all btn_pagi nounderline mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-      {% endif %}
+      {% include "blog/page_nav.html" %}
     {% endif %}
   </div>
 <!-- pagination end -->    

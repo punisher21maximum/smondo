@@ -10,6 +10,14 @@ from django.views.generic import (
 from .models import Post, Bike, Scooty, Bicycle, Mobile
 from django.contrib.auth.models import User
 
+model_dict = {
+    "Post":Post, 
+    "Bike":Bike, 
+    "Scooty":Scooty, 
+    "Bicycle":Bicycle, 
+    "Mobile":Mobile
+    }
+
 # from .filters import EnotesFilter, QuesPaperFilter, PracsFilter
 
 # def home(request):
@@ -98,7 +106,7 @@ def my_get_model_fields(model):
 #Bike 
 class BikeListView(ListView):
     model = Bike
-    template_name = 'blog/bike_list.html'  # <app>/<model>_<viewtype>.html
+    template_name = 'blog/subcat_list.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     ordering = ['-date_posted']
     paginate_by = 3
@@ -112,6 +120,17 @@ class BikeListView(ListView):
 class BikeDetailView(DetailView):
     model = Bike
 
+class BikeDetailView2(DetailView):
+
+    def dispatch(self, request, *args, **kwargs):
+        print(kwargs['model'])
+        self.model = model_dict[ kwargs.get('model', None) ]
+
+        return super(BikeDetailView2, self).dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        return self.model.objects.filter()
+    
 
 class BikeCreateView(LoginRequiredMixin, CreateView):
     model = Bike
@@ -164,7 +183,6 @@ class ScootyListView(ListView):
 class ScootyDetailView(DetailView):
     model = Scooty
 
-
 class ScootyCreateView(LoginRequiredMixin, CreateView):
     model = Scooty
     template_name = 'blog/bike_form.html'  # <app>/<model>_<viewtype>.htm
@@ -199,7 +217,6 @@ class ScootyDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
-#Bicycle
 
 """MobileCat"""
 #mobile
