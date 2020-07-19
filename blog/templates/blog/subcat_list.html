@@ -1,5 +1,6 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
+{% load myfilters %}
 
 
 {% block content %}
@@ -85,25 +86,17 @@
               </tbody>
             </table>
             <!-- price end  -->
-     
-            <!-- details  -->
-            <table class="table table-hover" style="font-size: 12px;">
-                <tbody>
-                  <tr>
-                    <th>KM</th>
-                    <td>{{post.km}} km</td>
-                    <th>CC</th>
-                    <td>{{post.cc}} cc</td>
-                  </tr>
-                  <tr>
-                    <th>Year</th>
-                    <td>{{post.year}}</td>
-                    <th>Brand</th>
-                    <td>{{post.brand}}</td>
-                  </tr>
-                </tbody>
-            </table>
-            <!-- details end -->
+ 
+            <!-- details Unique --> 
+            {% if class_name  == "Bike" %}
+                {% include "blog/bike_list2.html" %}
+            {% elif class_name  == "Scooty" %}
+                {% include "blog/scooty_list2.html" %}
+            {% elif class_name  == "Mobile" %}
+                {% include "blog/mobile_list2.html" %}
+            {% endif %}          
+            <!-- details Unique end -->
+
             <small>{{post.author.profile.phone_number}}, {{ post.author.profile.society }},
                 {{ post.author.profile.bldg }}, {{ post.author.profile.floor }}0{{ post.author.profile.flat_no }}</small>
         </div>

@@ -15,6 +15,8 @@ class Post(models.Model):
 	#common fields
 	title = models.CharField(max_length=100, help_text='like pulsar, duke')
 	desc = models.TextField()
+	year = models.PositiveIntegerField(blank=True, null=True, 
+		help_text='bought year')
 	#pricing
 	sell_price = models.PositiveIntegerField(blank=True, null=True)
 	rent_hour = models.PositiveIntegerField(blank=True, null=True)
@@ -29,6 +31,8 @@ class Post(models.Model):
 	#auto generated field
 	date_posted = models.DateTimeField(default=timezone.now)
 
+	def get_class(self):
+	 	return self.__class__.__name__
 
 	def __str__(self):
 		return self.title
@@ -41,14 +45,13 @@ class TwoWheeler(Post):
 	km = models.PositiveIntegerField(blank=True, null=True,  
 		help_text='KM driven')
 	cc = models.PositiveIntegerField(blank=True, null=True,  help_text='CC')
-	year = models.PositiveIntegerField(blank=True, null=True, 
-		help_text='bought year')
+	
 
 class Bike(TwoWheeler):
 	brands_list = 'Bajaj Hero Honda Hero-honda KTM Yamaha Suzuki TVS Royal-Enfield Other'
 	brand_CHOICES = func_CHOICES(brands_list)
 	brand = models.CharField(max_length=lenn, choices=brand_CHOICES, default='Other')
-	with_helmet = models.BooleanField(default=False, null=True)
+	with_helmet = models.BooleanField(default=False)
 
 	def get_absolute_url(self):
 		return reverse('bikes-detail', kwargs={'pk': self.pk})
@@ -57,7 +60,7 @@ class Scooty(TwoWheeler):
 	brands_list = 'Bajaj Hero Honda Mahindra Suzuki TVS Other'
 	brand_CHOICES = func_CHOICES(brands_list)
 	brand = models.CharField(max_length=lenn, choices=brand_CHOICES, default='Other')
-
+	color = models.CharField(max_length=lenn, blank=True, null=True)
 
 	def get_absolute_url(self):
 		return reverse('scootys-detail', kwargs={'pk': self.pk})
@@ -83,6 +86,8 @@ class Mobile(MobileCat):
 	def get_absolute_url(self):
 		return reverse('mobiles-detail', kwargs={'pk': self.pk})
 
+	def __str__(self):
+		return 'Mobile'
 
 class MobileCover(MobileCat):
 	pass

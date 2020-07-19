@@ -98,10 +98,37 @@ def my_get_model_fields(model):
 #Bike 
 class BikeListView(ListView):
     model = Bike
-    template_name = 'blog/bike_list.html'  # <app>/<model>_<viewtype>.html
+    template_name = 'blog/subcat_list.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     ordering = ['-date_posted']
     paginate_by = 6
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        """Get the context for this view."""
+        queryset = object_list if object_list is not None else self.object_list
+        page_size = self.get_paginate_by(queryset)
+        context_object_name = self.get_context_object_name(queryset)
+        if page_size:
+            paginator, page, queryset, is_paginated = self.paginate_queryset(queryset, page_size)
+            context = {
+                'paginator': paginator,
+                'page_obj': page,
+                'is_paginated': is_paginated,
+                'object_list': queryset
+            }
+        else:
+            context = {
+                'paginator': None,
+                'page_obj': None,
+                'is_paginated': False,
+                'object_list': queryset
+            }
+        if context_object_name is not None:
+            context[context_object_name] = queryset
+        context.update(kwargs)
+        context['class_name'] = 'Bike'
+        print(context['class_name'])
+        return super().get_context_data(**context)
 
 
 class BikeDetailView(DetailView):
@@ -145,11 +172,37 @@ class BikeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 #Scooty
 class ScootyListView(ListView):
     model = Scooty
-    template_name = 'blog/scooty_list.html'  # <app>/<model>_<viewtype>.html
+    template_name = 'blog/subcat_list.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     ordering = ['-date_posted']
     paginate_by = 6
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        """Get the context for this view."""
+        queryset = object_list if object_list is not None else self.object_list
+        page_size = self.get_paginate_by(queryset)
+        context_object_name = self.get_context_object_name(queryset)
+        if page_size:
+            paginator, page, queryset, is_paginated = self.paginate_queryset(queryset, page_size)
+            context = {
+                'paginator': paginator,
+                'page_obj': page,
+                'is_paginated': is_paginated,
+                'object_list': queryset
+            }
+        else:
+            context = {
+                'paginator': None,
+                'page_obj': None,
+                'is_paginated': False,
+                'object_list': queryset
+            }
+        if context_object_name is not None:
+            context[context_object_name] = queryset
+        context.update(kwargs)
+        context['class_name'] = 'Scooty'
+        print(context['class_name'])
+        return super().get_context_data(**context)
 
 class ScootyDetailView(DetailView):
     model = Scooty
@@ -191,14 +244,50 @@ class ScootyDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 #Bicycle
 
+def make_detail_url(model_name):
+    """ URL used in ListView to go to DetailView """
+    model_name = model_name.lower()+'s'
+    detail_url = "{% url '{}-detail' post.id %}".format(model_name)
+    return detail_url
+
 """MobileCat"""
 #mobile
 class MobileListView(ListView):
     model = Mobile
-    template_name = 'blog/mobile_list.html'  # <app>/<model>_<viewtype>.html
+    template_name = 'blog/subcat_list.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     ordering = ['-date_posted']
     paginate_by = 6
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        """Get the context for this view."""
+        queryset = object_list if object_list is not None else self.object_list
+        page_size = self.get_paginate_by(queryset)
+        context_object_name = self.get_context_object_name(queryset)
+        if page_size:
+            paginator, page, queryset, is_paginated = self.paginate_queryset(queryset, page_size)
+            context = {
+                'paginator': paginator,
+                'page_obj': page,
+                'is_paginated': is_paginated,
+                'object_list': queryset
+            }
+        else:
+            context = {
+                'paginator': None,
+                'page_obj': None,
+                'is_paginated': False,
+                'object_list': queryset
+            }
+        if context_object_name is not None:
+            context[context_object_name] = queryset
+        context.update(kwargs)
+        #extra context
+        context['class_name'] = 'Mobile'
+        print(context['posts'])
+
+        return super().get_context_data(**context)
+
 
 
 class MobileDetailView(DetailView):

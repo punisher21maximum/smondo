@@ -11,7 +11,7 @@
                     <div class="form-group col-3 px-3"> 
                         <b>Mandatory to fill</b><hr>
                         {% for field in form %}
-                            {% if forloop.counter0 < 2 %}
+                            {% if forloop.counter0 <= 2 %}
                                 {{ field|as_crispy_field}}
                             {% endif %}
                         {% endfor %}
@@ -19,7 +19,7 @@
                     <div class="form-group col-3 px-3"> 
                         <b>Fill at least one</b><hr>
                         {% for field in form %}
-                            {% if forloop.counter0 >= 2 and forloop.counter0 < 7 %}
+                            {% if forloop.counter0 >= 3 and forloop.counter0 <= 7 %}
                                 {{ field|as_crispy_field}}
                             {% endif %}
                         {% endfor %}
@@ -27,7 +27,7 @@
                     <div class="form-group col-3 px-3"> 
                         <b>Optional</b><hr>
                         {% for field in form %}
-                            {% if forloop.counter0 >= 7 and forloop.counter0 < 11 %}
+                            {% if forloop.counter0 >= 8 and forloop.counter0 <= 11 %}
                                 {{ field|as_crispy_field}}
                             {% endif %}
                         {% endfor %}
@@ -35,7 +35,7 @@
                     <div class="form-group col-3 px-3"> 
                         <b>Optional</b><hr>
                         {% for field in form %}
-                            {% if forloop.counter0 >= 11 %}
+                            {% if forloop.counter0 >= 12 %}
                                 {{ field|as_crispy_field}}
                             {% endif %}
                         {% endfor %}
