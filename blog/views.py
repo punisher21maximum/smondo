@@ -187,13 +187,13 @@ class SubcatUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def dispatch(self, request, *args, **kwargs):
         """overriding "dispatch" func to set model passed as arg in URL"""
         self.model = model_dict[ kwargs.get('model', None) ]
-        return super(SubcatCreateView, self).dispatch(request, *args, **kwargs)
+        return super(SubcatUpdateView, self).dispatch(request, *args, **kwargs)
 
     def get_form_class(self):
         """overriding "get_form_class" func to get fields for model passed in URL"""
         self.fields = my_get_model_fields(model_dict[self.model._meta.model_name.title()])
-        return super(SubcatCreateView, self).get_form_class()
-        
+        return super(SubcatUpdateView, self).get_form_class()
+
 """Bike cat"""
 #Bike 
 class BikeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):

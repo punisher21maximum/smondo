@@ -35,6 +35,7 @@ urlpatterns = [
     path('<str:model>/new/', SubcatCreateView.as_view(), name='subcat-create'),
     path('<str:model>/', SubcatListView.as_view(), name='subcat-list'), 
     path('<str:model>/<int:pk>/', SubcatDetailView.as_view(), name='subcat-detail'), 
+    path('<str:model>/<int:pk>/update/', SubcatUpdateView.as_view(), name='subcat-update'),
     #bike
     path('bikes/<int:pk>/update/', BikeUpdateView.as_view(), name='bikes-update'),
     path('bikes/<int:pk>/delete/', BikeDeleteView.as_view(), name='bikes-delete'),
