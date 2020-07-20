@@ -170,22 +170,32 @@ class SubcatCreateView(LoginRequiredMixin, CreateView):
         self.fields = my_get_model_fields(model_dict[self.model._meta.model_name.title()])
         return super(SubcatCreateView, self).get_form_class()
 
-
-
-"""Bike cat"""
-#Bike 
-
-class BikeCreateView(LoginRequiredMixin, CreateView):
+class SubcatUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Bike
-    
     fields = my_get_model_fields(Bike)
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-    
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
 
+    def dispatch(self, request, *args, **kwargs):
+        """overriding "dispatch" func to set model passed as arg in URL"""
+        self.model = model_dict[ kwargs.get('model', None) ]
+        return super(SubcatCreateView, self).dispatch(request, *args, **kwargs)
+
+    def get_form_class(self):
+        """overriding "get_form_class" func to get fields for model passed in URL"""
+        self.fields = my_get_model_fields(model_dict[self.model._meta.model_name.title()])
+        return super(SubcatCreateView, self).get_form_class()
+        
+"""Bike cat"""
+#Bike 
 class BikeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Bike
     fields = my_get_model_fields(Bike)
@@ -211,30 +221,8 @@ class BikeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
+"""Scooty cat"""
 #Scooty
-class ScootyListView(ListView):
-    model = Scooty
-    template_name = 'blog/subcat_list.html'  # <app>/<model>_<viewtype>.html
-    context_object_name = 'posts'
-    ordering = ['-date_posted']
-    paginate_by = 6
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['class_name'] = 'Scooty'
-        return context
-
-# context['class_name'] = 'Scooty'
-
-class ScootyCreateView(LoginRequiredMixin, CreateView):
-    model = Scooty
-    template_name = 'blog/bike_form.html'  # <app>/<model>_<viewtype>.htm
-    fields = my_get_model_fields(Scooty)
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
 class ScootyUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Scooty
     fields = my_get_model_fields(Scooty)
@@ -260,32 +248,8 @@ class ScootyDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
-
 """MobileCat"""
 #mobile
-class MobileListView(ListView):
-    model = Mobile
-    template_name = 'blog/subcat_list.html'  # <app>/<model>_<viewtype>.html
-    context_object_name = 'posts'
-    ordering = ['-date_posted']
-    paginate_by = 6
-
-    def get_context_data(self, **kwargs):
-            context = super().get_context_data(**kwargs)
-            context['class_name'] = 'Mobile'
-            return context
-
-# context['class_name'] = 'Mobile'
-
-class MobileCreateView(LoginRequiredMixin, CreateView):
-    model = Mobile
-    
-    fields = my_get_model_fields(Mobile)
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
 class MobileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Mobile
     fields = my_get_model_fields(Mobile)
