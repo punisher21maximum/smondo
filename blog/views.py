@@ -17,7 +17,7 @@ model_dict = {
     "Bicycle":Bicycle, 
     "Mobile":Mobile
     }
-
+from django.urls import reverse_lazy
 # from .filters import EnotesFilter, QuesPaperFilter, PracsFilter
 
 # def home(request):
@@ -196,8 +196,8 @@ class SubcatUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return super(SubcatUpdateView, self).get_form_class()
 
 #DeleteView
-class BikeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = Bike
+class SubcatDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+
     success_url = '/'
     template_name = 'blog/post_confirm_delete.html'
 
@@ -206,6 +206,20 @@ class BikeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
+    def dispatch(self, request, *args, **kwargs):#model
+        """overriding "dispatch" func to set model passed as arg in URL"""
+        self.model = model_dict[ kwargs.get('model', None) ]
+        return super(SubcatDeleteView, self).dispatch(request, *args, **kwargs)   
+
+    def get_context_data(self, **kwargs):#class_name
+        """override "get_context_data" to pass model_name to subcat_list.html"""
+        context = super().get_context_data(**kwargs)
+        context['class_name'] = self.model._meta.model_name.title() # kwargs.get('model', None) 
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('subcat-list', kwargs={'model':self.model._meta.model_name.title()})
 
 """Bike cat"""
 #Bike 

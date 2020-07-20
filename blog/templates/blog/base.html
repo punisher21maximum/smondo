@@ -128,9 +128,28 @@
 
               
               <ul class="list-group ">
-                <li class="list-group-item side_bar_l" href="{% url 'profile' %}" >
-                  <a class=" nav-link  side_bar_l_c" href="#">
-                   <i class="fa fa-plus-circle"></i>  {{"Post"|upper}}
+                <li class="list-group-item side_bar_l"  >
+                  <a class=" nav-link  side_bar_l_c" href="{% url 'subcat-list' model='Bike' %}">
+                   <i class="fa fa-list"></i>  {{"Bike"|upper}}
+                  </a>
+                  <a class=" nav-link  side_bar_l_c" href="{% url 'subcat-create' model='Bike' %}">
+                    <i class="fa fa-plus-circle"></i>  {{"Add Bike"|upper}}
+                   </a>
+                </li>
+                <li class="list-group-item side_bar_l"  >
+                  <a class=" nav-link  side_bar_l_c" href="{% url 'subcat-list' model='Scooty' %}">
+                   <i class="fa fa-list"></i>  {{"Scooty"|upper}}
+                  </a>
+                  <a class=" nav-link  side_bar_l_c" href="{% url 'subcat-create' model='Scooty' %}">
+                    <i class="fa fa-plus-circle"></i>  {{"Add Scooty"|upper}}
+                  </a>
+                </li>
+                <li class="list-group-item side_bar_l" >
+                  <a class=" nav-link  side_bar_l_c" href="{% url 'subcat-list' model='Mobile' %}">
+                   <i class="fa fa-list"></i>  {{"Mobile"|upper}}
+                  </a>
+                  <a class=" nav-link  side_bar_l_c" href="{% url 'subcat-create' model='Mobile' %}">
+                    <i class="fa fa-plus-circle"></i>  {{"Add Mobile"|upper}}
                   </a>
                 </li>
                 <li class="list-group-item side_bar_l">

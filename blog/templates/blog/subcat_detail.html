@@ -8,6 +8,7 @@
         <small class="text-muted">{{ object.date_objected|date:"F d, Y" }}</small>
         {% if object.author == user %}
           <div>
+            <!-- update -->
             {% if class_name  == "Bike" %}
             <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'subcat-update' pk=object.id model='Bike' %}">Update</a>
             {% elif class_name  == "Scooty" %}
@@ -15,7 +16,14 @@
             {% elif class_name  == "Mobile" %}
             <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'subcat-update' pk=object.id model='Mobile' %}">Update</a>
             {% endif %}
-            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'bikes-delete' object.id %}">Delete</a>
+            <!-- delete -->
+            {% if class_name  == "Bike" %}
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'subcat-delete' pk=object.id model='Bike' %}">Delete</a>
+            {% elif class_name  == "Scooty" %}
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'subcat-delete' pk=object.id model='Scooty' %}">Delete</a>
+            {% elif class_name  == "Mobile" %}
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'subcat-delete' pk=object.id model='Mobile' %}">Delete</a>
+            {% endif %}
           </div>
         {% endif %}
       </div>

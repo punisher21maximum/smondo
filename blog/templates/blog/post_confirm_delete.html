@@ -10,7 +10,13 @@
             </fieldset>
             <div class="form-group">
                 <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
-                <a class="btn btn-outline-secondary" href="{% url 'bikes-home'  %}">Cancel</a>
+                {% if class_name  == "Bike" %}
+                <a class="btn btn-outline-secondary" href="{% url 'subcat-detail' pk=object.id model='Bike' %}">Cancel</a>
+                {% elif class_name  == "Scooty" %}
+                <a class="btn btn-outline-secondary" href="{% url 'subcat-detail' pk=object.id model='Scooty' %}">Cancel</a>
+                {% elif class_name  == "Mobile" %}
+                <a class="btn btn-outline-secondary" href="{% url 'subcat-detail' pk=object.id model='Mobile' %}">Cancel</a>
+                {% endif %}            
             </div>
         </form>
     </div>
