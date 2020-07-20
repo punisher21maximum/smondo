@@ -6,12 +6,6 @@ from .views import (
     # PostUpdateView,
     # PostDeleteView,
     # UserPostListView,
-    #bike
-    BikeDeleteView,
-    #scooty
-    ScootyDeleteView,
-    #mobile
-    MobileDeleteView,
     #subcat Views
     SubcatListView,
     SubcatDetailView,
@@ -35,11 +29,5 @@ urlpatterns = [
     path('<str:model>/<int:pk>/', SubcatDetailView.as_view(), name='subcat-detail'), 
     path('<str:model>/<int:pk>/update/', SubcatUpdateView.as_view(), name='subcat-update'),
     path('<str:model>/<int:pk>/delete/', SubcatDeleteView.as_view(), name='subcat-delete'),
-    #bike
-    path('bikes/<int:pk>/delete/', BikeDeleteView.as_view(), name='bikes-delete'),
-    #scooty
-    path('scootys/<int:pk>/delete/', ScootyDeleteView.as_view(), name='scootys-delete'),
-    #mobile
-    path('mobiles/<int:pk>/delete/', MobileDeleteView.as_view(), name='mobiles-delete'),
-   
+
 ]
