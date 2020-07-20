@@ -102,53 +102,6 @@ def my_get_model_fields(model):
             all_f.remove(f)
     return all_f
 
-"""subcat view"""
-#ListView
-class SubcatListView(ListView):
-
-    template_name = 'blog/subcat_list.html'  # <app>/<model>_<viewtype>.html
-    context_object_name = 'posts'
-    ordering = ['-date_posted']
-    paginate_by = 3
-
-    """overriding "dispatch" func to set model passed as arg in URL"""
-    def dispatch(self, request, *args, **kwargs):
-        print(model_dict[ kwargs.get('model', None) ])
-        self.model = model_dict[ kwargs.get('model', None) ]
-        return super(SubcatListView, self).dispatch(request, *args, **kwargs)
-
-    """ "get_queryset" also Required to override model name """
-    # def get_queryset(self):
-    #     return self.model.objects.filter()
-
-    def get_context_data(self, **kwargs):
-        """override "get_context_data" to pass model_name to subcat_list.html"""
-        context = super().get_context_data(**kwargs)
-        context['class_name'] = self.model._meta.model_name.title() # kwargs.get('model', None) 
-        return context
-
-#DetailView
-class SubcatDetailView(DetailView):
-    """overriding "dispatch" func to set model passed as arg in URL"""
-
-    # template_name = <app>/<model>_<viewtype>.html
-    context_object_name = 'post'
-    template_name = 'blog/subcat_detail.html'
-
-    def dispatch(self, request, *args, **kwargs):
-        self.model = model_dict[ kwargs.get('model', None) ]
-        return super(SubcatDetailView, self).dispatch(request, *args, **kwargs)
-
-    def get_queryset(self):
-        return self.model.objects.filter()
-
-    def get_context_data(self, **kwargs):
-        """override "get_context_data" to pass model_name to subcat_list.html"""
-        context = super().get_context_data(**kwargs)
-        context['class_name'] = self.model._meta.model_name.title() # kwargs.get('model', None) 
-        return context
-
-
 """Bike cat"""
 #Bike 
 class BikeListView(ListView):
@@ -165,6 +118,17 @@ class BikeListView(ListView):
 
 # context['class_name'] = 'Bike'
 
+class BikeDetailView(DetailView):
+
+    def dispatch(self, request, *args, **kwargs):
+        print(kwargs['model'])
+        self.model = model_dict[ kwargs.get('model', None) ]
+
+        return super(BikeDetailView, self).dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        return self.model.objects.filter()
+    
 
 class BikeCreateView(LoginRequiredMixin, CreateView):
     model = Bike
@@ -214,6 +178,8 @@ class ScootyListView(ListView):
         return context
 
 # context['class_name'] = 'Scooty'
+class ScootyDetailView(DetailView):
+    model = Scooty
 
 class ScootyCreateView(LoginRequiredMixin, CreateView):
     model = Scooty
@@ -265,6 +231,9 @@ class MobileListView(ListView):
             return context
 
 # context['class_name'] = 'Mobile'
+
+class MobileDetailView(DetailView):
+    model = Mobile
 
 class MobileCreateView(LoginRequiredMixin, CreateView):
     model = Mobile
