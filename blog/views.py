@@ -148,23 +148,32 @@ class SubcatDetailView(DetailView):
         context['class_name'] = self.model._meta.model_name.title() # kwargs.get('model', None) 
         return context
 
+#CreateView
+class SubcatCreateView(LoginRequiredMixin, CreateView):
+    # model = Bike
+    
+    # fields = my_get_model_fields(Bike)
+    template_name = 'blog/subcat_form.html'
+
+    def form_valid(self, form):
+        """check form author and current logged in user is same"""
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def dispatch(self, request, *args, **kwargs):
+        """overriding "dispatch" func to set model passed as arg in URL"""
+        self.model = model_dict[ kwargs.get('model', None) ]
+        return super(SubcatCreateView, self).dispatch(request, *args, **kwargs)
+
+    def get_form_class(self):
+        """overriding "get_form_class" func to get fields for model passed in URL"""
+        self.fields = my_get_model_fields(model_dict[self.model._meta.model_name.title()])
+        return super(SubcatCreateView, self).get_form_class()
+
+
 
 """Bike cat"""
 #Bike 
-class BikeListView(ListView):
-    model = Bike
-    template_name = 'blog/subcat_list.html'  # <app>/<model>_<viewtype>.html
-    context_object_name = 'posts'
-    ordering = ['-date_posted']
-    paginate_by = 3
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['class_name'] = 'Bike'
-        return context
-
-# context['class_name'] = 'Bike'
-
 
 class BikeCreateView(LoginRequiredMixin, CreateView):
     model = Bike
@@ -174,6 +183,8 @@ class BikeCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+    
 
 class BikeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Bike

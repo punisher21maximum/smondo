@@ -54,7 +54,7 @@ class Bike(TwoWheeler):
 	with_helmet = models.BooleanField(default=False)
 
 	def get_absolute_url(self):
-		return reverse('subcat-detail', kwargs={'pk': self.pk})
+		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'Bike'})
 
 class Scooty(TwoWheeler):
 	brands_list = 'Bajaj Hero Honda Mahindra Suzuki TVS Other'
@@ -63,7 +63,7 @@ class Scooty(TwoWheeler):
 	color = models.CharField(max_length=lenn, blank=True, null=True)
 
 	def get_absolute_url(self):
-		return reverse('scootys-detail', kwargs={'pk': self.pk})
+		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'Scooty'})
 
 class Bicycle(TwoWheeler):
 	brands_list = 'Hercules Hero Other'
@@ -84,7 +84,7 @@ class Mobile(MobileCat):
 	# how_old = models.PositiveIntegerField(blank=True, default=1, help_text="Months")
 
 	def get_absolute_url(self):
-		return reverse('mobiles-detail', kwargs={'pk': self.pk})
+		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'Mobile'})
 
 	def __str__(self):
 		return 'Mobile'
