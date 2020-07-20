@@ -195,7 +195,17 @@ class SubcatUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         self.fields = my_get_model_fields(model_dict[self.model._meta.model_name.title()])
         return super(SubcatUpdateView, self).get_form_class()
 
+#DeleteView
+class BikeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Bike
+    success_url = '/'
+    template_name = 'blog/post_confirm_delete.html'
 
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
 
 """Bike cat"""
 #Bike 
