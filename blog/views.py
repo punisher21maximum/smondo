@@ -43,13 +43,12 @@ class SubcatListView(ListView):
 
     """overriding "dispatch" func to set model passed as arg in URL"""
     def dispatch(self, request, *args, **kwargs):
-        print(model_dict[ kwargs.get('model', None) ])
         self.model = model_dict[ kwargs.get('model', None) ]
         return super(SubcatListView, self).dispatch(request, *args, **kwargs)
 
     """ "get_queryset" also Required to override model name """
-    # def get_queryset(self):
-    #     return self.model.objects.filter()
+    def get_queryset(self):
+        return self.model.objects.filter()
 
     def get_context_data(self, **kwargs):
         """override "get_context_data" to pass model_name to subcat_list.html"""
@@ -102,8 +101,8 @@ class SubcatCreateView(LoginRequiredMixin, CreateView):
 
 #UpdateView
 class SubcatUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = Bike
-    fields = my_get_model_fields(Bike)
+
+    template_name = 'blog/subcat_form.html'
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -128,7 +127,6 @@ class SubcatUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 #DeleteView
 class SubcatDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
-    success_url = '/'
     template_name = 'blog/post_confirm_delete.html'
 
     def test_func(self):

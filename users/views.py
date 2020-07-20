@@ -8,7 +8,8 @@ from .forms import (
 )
 from django.core.mail import EmailMessage
 from django.core.mail import send_mail
-
+from django.urls import reverse_lazy
+ 
 
 def register(request):
     if request.method == 'POST':
@@ -17,7 +18,7 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Your account has been created! You are now able to log in')
-            return redirect('blog-home')
+            return reverse_lazy('subcat-list', kwargs={'model':'Bike'})
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
