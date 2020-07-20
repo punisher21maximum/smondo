@@ -170,6 +170,7 @@ class SubcatCreateView(LoginRequiredMixin, CreateView):
         self.fields = my_get_model_fields(model_dict[self.model._meta.model_name.title()])
         return super(SubcatCreateView, self).get_form_class()
 
+#UpdateView
 class SubcatUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Bike
     fields = my_get_model_fields(Bike)
@@ -194,22 +195,10 @@ class SubcatUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         self.fields = my_get_model_fields(model_dict[self.model._meta.model_name.title()])
         return super(SubcatUpdateView, self).get_form_class()
 
+
+
 """Bike cat"""
 #Bike 
-class BikeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = Bike
-    fields = my_get_model_fields(Bike)
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
-    def test_func(self):
-        post = self.get_object()
-        if self.request.user == post.author:
-            return True
-        return False
-
 class BikeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Bike
     success_url = '/'
@@ -223,20 +212,6 @@ class BikeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 """Scooty cat"""
 #Scooty
-class ScootyUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = Scooty
-    fields = my_get_model_fields(Scooty)
-    template_name = 'blog/bike_form.html'  # <app>/<model>_<viewtype>.htm
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
-    def test_func(self):
-        post = self.get_object()
-        if self.request.user == post.author:
-            return True
-        return False
-
 class ScootyDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Scooty
     success_url = '/'
@@ -250,20 +225,6 @@ class ScootyDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 """MobileCat"""
 #mobile
-class MobileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = Mobile
-    fields = my_get_model_fields(Mobile)
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
-    def test_func(self):
-        post = self.get_object()
-        if self.request.user == post.author:
-            return True
-        return False
-
 class MobileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Mobile
     success_url = '/'
