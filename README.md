@@ -27,7 +27,7 @@
 1. Breadcrumbs
 
 |Task   | status  |   |
-|:-:|---|---|
+|---|---|---|
 |# Account   |   |   |
 |1. Register without Gmail verification : Done   |   |   |
 |2. Register with Gmail verification :    |   |   |
