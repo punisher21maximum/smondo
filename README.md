@@ -1,14 +1,14 @@
 # Convi
 
 
-|Task   | status  |   |
+|Task   | status  | comment  |
 |---|---|---|
 |Account|   |   |
-|1. Register without Gmail verification|   |   |
+|1. Register without Gmail verification|Done|   |
 |2. Register with Gmail verification|   |   |
-|3. Login|   |   |
-|4. Password Change|   |   |
-|5. Password Reset|   |   |
+|3. Login| Done  |   |
+|4. Password Change| Done  |   |
+|5. Password Reset| Done  |   |
 |Buy|   |   |
 |1. Search, whole ConviMax|   |   |
 |2. Search, subcategory|   |   |
@@ -21,3 +21,6 @@
 |2. change layout of sell form|   |   |
 |General|   |   |
 |1. Breadcrumbs|   |   |
+
+
+Markdown code generator : https://www.tablesgenerator.com/latex_tables
