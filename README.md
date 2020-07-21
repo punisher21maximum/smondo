@@ -26,3 +26,13 @@
 
 1. Breadcrumbs
 
+|Task   | status  |   |
+|:-:|---|---|
+|# Account   |   |   |
+|1. Register without Gmail verification : Done   |   |   |
+|2. Register with Gmail verification :    |   |   |
+|3. Login : Done   |   |   |
+|4. Password Change :   |   |   |
+|5. Password Reset :   |   |   |
+|   |   |   |
+|   |   |   |
