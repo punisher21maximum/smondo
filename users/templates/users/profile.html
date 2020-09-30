@@ -1,5 +1,9 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
+{% load google_analytics_tags %}
+<div style="display:none">
+    <img src="{% google_analytics %}" width="0" height="0" />
+</div>
 {% block content %}
     <div class="container " >
       <div class="offset-4 col-8 bg-dark text-white p-4 mb-3">

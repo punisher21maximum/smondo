@@ -1,4 +1,8 @@
 {% extends "blog/base.html" %}
+{% load google_analytics_tags %}
+<div style="display:none">
+    <img src="{% google_analytics %}" width="0" height="0" />
+</div>
 {% block content %}
     <h2>You have been logged out</h2>
     <div class="border-top pt-3">

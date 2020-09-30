@@ -1,8 +1,11 @@
 {% load static %}
+{% load google_analytics_tags %}
+<div style="display:none">
+    <img src="{% google_analytics %}" width="0" height="0" />
+</div>
 <!DOCTYPE html>
 <html>
 <head>
-
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,10 +14,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
-        <link rel="stylesheet" type="text/css" 
-    href="{% static 'blog/bootstrap-social/bootstrap-social.css' %}">
-    <link rel="stylesheet" 
-    href="{% static 'blog/font-awesome/css/font-awesome.min.css' %}">
+        
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/bootstrap-social/bootstrap-social.css' %}">
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/font-awesome/css/font-awesome.min.css' %}">
 
     {% if title %}
         <title>Cmax</title>
@@ -22,35 +25,102 @@
         <title>Cmax</title>
     {% endif %}
 </head>
+<!-- background-color:#563d7c; -->
 <body >
-    <header class="site-header">
-      <nav class="navbar navbar-expand-md navbar-dark  fixed-top py-3"
-      style="background-color:#563d7c;font-weight:900;">
-        <div class="container">
-          <a class="navbar-brand mr-4" href="#">ConviMax</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarToggle">
-            <div class="navbar-nav mr-auto">
-               <a class="nav-item nav-link" href="#">About</a>  
-            </div>
-            <!-- Navbar Right Side -->
-            <div class="navbar-nav">
-    {% if user.is_authenticated %}
-    <a class="nav-item nav-link" href="#">{{ user.profile.first_name }}
-      {{ user.profile.last_name }}</a>
-      <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
-      <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
-    {% else %}
-    
-      <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
-      <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
-    {% endif %}
-            </div>
-          </div>
-        </div>
+    <header class="site-header intro">
+      <nav class="navbar navbar-expand-md navbar-dark  fixed-top py-3 px-4"
+        style="background-color:#563d7c;font-weight:900;">
+          <!-- <div class="container"> -->
+         
+              <a class="navbar-brand mr-4" href="#">ConviMax</a>
+              <!-- dropdown -->
+              <form class="form-inline my-2 my-lg-0 ">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search book, car, bike and more" aria-label="Search"
+                  style="width:300px">
+                  <button class="btn btn-outline-white my-2 my-sm-0" type="submit">Search</button>
+              </form>
+              
+              <!-- dropdown end -->
+              <div class="collapse navbar-collapse" id="navbarToggle">
+                <div class="navbar-nav mr-auto">
+                  <a class="nav-item nav-link" href="#"></a>  
+                </div>
+                
+                <!-- Navbar Right Side -->
+                <div class="navbar-nav">
+                  {% if user.is_authenticated %}
+                  <a class="nav-item nav-link" href="#">{{ user.profile.first_name }}
+                    {{ user.profile.last_name }}</a>
+                    <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                    <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                  {% else %}
+                    <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                    <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                  {% endif %}
+                </div>
+              </div>
+
+          <!-- </div> -->
+        <br>
+
+
       </nav>
+
+      <nav class="navbar navbar-expand-md navbar-dark  fixed-top py-0 px-4"
+        style="background-color:#563d7c;font-weight:900; margin-top: 60px;">
+          <!-- <div class="container"> -->
+              <!-- dropdown -->
+              <button class="btn btn-white my-2 text-white" style="background-color:#563d7c" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                <b>{{"All categories"|upper}}  <i class="fa fa-caret-down"></i></b>
+              </button>
+              
+              <!-- dropdown end -->
+              <div class="navbar-nav mr-auto text-white ml-3">
+                <a class="nav-item nav-link mx-3" href="{% url 'subcat-list' model='bike' %}">Bikes</a>
+                <a class="nav-item nav-link mx-3" href="{% url 'subcat-list' model='scooty' %}">Scootys</a>
+                <a class="nav-item nav-link mx-3" href="{% url 'subcat-list' model='novel' %}">Novels</a>
+                <a class="nav-item nav-link mx-3" href="{% url 'subcat-list' model='mobile' %}">Mobiles</a>
+                <a class="nav-item nav-link mx-3" href="{% url 'subcat-list' model='mouse' %}">Mouses</a>  
+                <a class="nav-item nav-link mx-3" href="{% url 'subcat-list' model='keyboard' %}">Keyboards</a>  
+                <a class="nav-item nav-link mx-3" href="{% url 'subcat-list' model='laptop' %}">Laptops</a>  
+                <a class="nav-item nav-link mx-3" href="{% url 'subcat-list' model='mobilecharger' %}">Mobile Chargers</a>  
+              </div>
+
+          <!-- </div> -->
+        <br>
+
+
+      </nav>
+<!-- all cat -->
+<div class="collapse "  id="collapseExample" style="margin-top: 110px;" >
+  <div class="card card-body" style="background-color:#eae6f0;">
+    <div class="row">
+      <div class="col-md">
+        <a class="dropdown-item" href="#"><b>Books</b></a>
+        <a class="dropdown-item" href="{% url 'subcat-list' model='novel' %}">Novels</a>
+        <a class="dropdown-item" href="{% url 'subcat-list' model='engg' %}">Enggs</a>
+        <a class="dropdown-item" href="{% url 'subcat-list' model='school' %}">Schools</a>
+      </div>
+      <div class="col-md">
+        <a class="dropdown-item" href="#"><b>Mobile</b></a>
+        <a class="dropdown-item" href="{% url 'subcat-list' model='mobile' %}">Mobiles</a>
+        <a class="dropdown-item" href="{% url 'subcat-list' model='mobilecharger' %}">Mobile Chargers</a>
+      </div>
+      <div class="col-md">
+        <a class="dropdown-item" href="#"><b>Electronic</b></a>
+        <a class="dropdown-item" href="{% url 'subcat-list' model='laptop' %}">Laptops</a>
+        <a class="dropdown-item" href="{% url 'subcat-list' model='mouse' %}">Mouses</a>
+        <a class="dropdown-item" href="{% url 'subcat-list' model='keyboard' %}">keyboard</a>
+      </div>
+      <div class="col-md">
+        <a class="dropdown-item" href="#"><b>vehicles</b></a>
+        <a class="dropdown-item" href="{% url 'subcat-list' model='bike' %}">Bikes</a>
+        <a class="dropdown-item" href="{% url 'subcat-list' model='scooty' %}">Scootys</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- all cat end -->
     </header>
 <main role="main" class="container-fluid">
       <div class="row">
@@ -128,27 +198,56 @@
 
               
               <ul class="list-group ">
+                <div class="dropdown">
+                  <button class="btn btn-secondary btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Models
+                  </button>
+                  <div class="dropdown-menu btn-block" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="{% url 'subcat-list' model='novel' %}">Novels</a>
+                    <a class="dropdown-item" href="{% url 'subcat-create' model='novel' %}">Novel+</a>
+
+                    <a class="dropdown-item" href="{% url 'subcat-list' model='engg' %}">Enggs</a>
+                    <a class="dropdown-item" href="{% url 'subcat-create' model='engg' %}">Engg+</a>
+
+                    <a class="dropdown-item" href="{% url 'subcat-list' model='school' %}">Schools</a>
+                    <a class="dropdown-item" href="{% url 'subcat-create' model='school' %}">School+</a>
+                    <!--  -->
+                    <a class="dropdown-item" href="{% url 'subcat-list' model='laptop' %}">Laptops</a>
+                    <a class="dropdown-item" href="{% url 'subcat-create' model='laptop' %}">Laptop+</a>
+
+                    <a class="dropdown-item" href="{% url 'subcat-list' model='mouse' %}">Mouses</a>
+                    <a class="dropdown-item" href="{% url 'subcat-create' model='mouse' %}">Mouse+</a>
+
+                    <a class="dropdown-item" href="{% url 'subcat-list' model='keyboard' %}">Keyboards</a>
+                    <a class="dropdown-item" href="{% url 'subcat-create' model='keyboard' %}">Keyboard+</a>
+                    <!--  -->
+                    <a class="dropdown-item" href="{% url 'subcat-list' model='mobilecharger' %}">MobileChargers</a>
+                    <a class="dropdown-item" href="{% url 'subcat-create' model='mobilecharger' %}">MobileCharger+</a>
+
+
+                  </div>
+                </div>
                 <li class="list-group-item side_bar_l"  >
-                  <a class=" nav-link  side_bar_l_c" href="{% url 'subcat-list' model='Bike' %}">
+                  <a class=" nav-link  side_bar_l_c" href="{% url 'subcat-list' model='bike' %}">
                    <i class="fa fa-list"></i>  {{"Bike"|upper}}
                   </a>
-                  <a class=" nav-link  side_bar_l_c" href="{% url 'subcat-create' model='Bike' %}">
+                  <a class=" nav-link  side_bar_l_c" href="{% url 'subcat-create' model='bike' %}">
                     <i class="fa fa-plus-circle"></i>  {{"Add Bike"|upper}}
                   </a>
                 </li>
                 <li class="list-group-item side_bar_l"  >
-                  <a class=" nav-link  side_bar_l_c" href="{% url 'subcat-list' model='Scooty' %}">
+                  <a class=" nav-link  side_bar_l_c" href="{% url 'subcat-list' model='scooty' %}">
                    <i class="fa fa-list"></i>  {{"Scooty"|upper}}
                   </a>
-                  <a class=" nav-link  side_bar_l_c" href="{% url 'subcat-create' model='Scooty' %}">
+                  <a class=" nav-link  side_bar_l_c" href="{% url 'subcat-create' model='scooty' %}">
                     <i class="fa fa-plus-circle"></i>  {{"Add Scooty"|upper}}
                   </a>
                 </li>
                 <li class="list-group-item side_bar_l" >
-                  <a class=" nav-link  side_bar_l_c" href="{% url 'subcat-list' model='Mobile' %}">
+                  <a class=" nav-link  side_bar_l_c" href="{% url 'subcat-list' model='mobile' %}">
                    <i class="fa fa-list"></i>  {{"Mobile"|upper}}
                   </a>
-                  <a class=" nav-link  side_bar_l_c" href="{% url 'subcat-create' model='Mobile' %}">
+                  <a class=" nav-link  side_bar_l_c" href="{% url 'subcat-create' model='mobile' %}">
                     <i class="fa fa-plus-circle"></i>  {{"Add Mobile"|upper}}
                   </a>
                 </li>
@@ -235,51 +334,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
-<script type="text/javascript">
-// If absolute URL from the remote server is provided, configure the CORS
-// header on that server.
-var url = 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/examples/learning/helloworld.pdf';
-
-// Loaded via <script> tag, create shortcut to access PDF.js exports.
-var pdfjsLib = window['pdfjs-dist/build/pdf'];
-
-// The workerSrc property shall be specified.
-pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
-
-// Asynchronous download of PDF
-var loadingTask = pdfjsLib.getDocument(url);
-loadingTask.promise.then(function(pdf) {
-  console.log('PDF loaded');
-  
-  // Fetch the first page
-  var pageNumber = 1;
-  pdf.getPage(pageNumber).then(function(page) {
-    console.log('Page loaded');
-    
-    var scale = 1.5;
-    var viewport = page.getViewport({scale: scale});
-
-    // Prepare canvas using PDF page dimensions
-    var canvas = document.getElementById('the-canvas');
-    var context = canvas.getContext('2d');
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
-
-    // Render PDF page into canvas context
-    var renderContext = {
-      canvasContext: context,
-      viewport: viewport
-    };
-    var renderTask = page.render(renderContext);
-    renderTask.promise.then(function () {
-      console.log('Page rendered');
-    });
-  });
-}, function (reason) {
-  // PDF loading error
-  console.error(reason);
-});
-</script>
 </html>
 
 

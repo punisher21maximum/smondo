@@ -65,10 +65,14 @@ class Scooty(TwoWheeler):
 	def get_absolute_url(self):
 		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'Scooty'})
 
-class Bicycle(TwoWheeler):
-	brands_list = 'Hercules Hero Other'
-	brand_CHOICES = func_CHOICES(brands_list)
-	brand = models.CharField(max_length=lenn, choices=brand_CHOICES, default='Other')
+# class Bicycle(Post):
+# 	brands_list = 'Hercules Hero Other'
+# 	brand_CHOICES = func_CHOICES(brands_list)
+# 	brand = models.CharField(max_length=lenn, choices=brand_CHOICES, default='Other')
+# 	gears = models.PositiveIntegerField(blank=True, default=6, help_text="How many Gears?")
+
+# 	def get_absolute_url(self):
+# 		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'Bicycle'})
 
 """Mobile/Charger/Cover"""
 class MobileCat(Post):
@@ -100,6 +104,12 @@ class MobileCharger(MobileCat):
 	voltage = models.PositiveIntegerField(blank=True, null=True, help_text="Volts")
 	ampere = models.PositiveIntegerField(blank=True, null=True, help_text="Ampere")
 
+	def get_absolute_url(self):
+		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'MobileCharger'})
+
+	def __str__(self):
+		return 'MobileCharger'
+
 """Laptop"""
 class LaptopCat(Post):
 	pass
@@ -118,11 +128,23 @@ class Laptop(LaptopCat):
 	external_graphic_card = models.CharField(max_length=lenn, choices=cards_CHOICES, default='Other')
 	eGB = models.PositiveIntegerField(blank=True, default=4, help_text="GB")
 
+	def get_absolute_url(self):
+		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'Laptop'})
+
+	def __str__(self):
+		return 'Laptop'
+
 class Mouse(LaptopCat):
 	brands_list = 'Lenovo Dell HP Viao Mac Other'
 	brand_CHOICES = func_CHOICES(brands_list)
 	brand = models.CharField(max_length=lenn, choices=brand_CHOICES, default='Other')	
 	gaming = models.BooleanField(default=False)
+
+	def get_absolute_url(self):
+		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'Mouse'})
+
+	def __str__(self):
+		return 'Mouse'
 
 class Keyboard(LaptopCat):
 	brands_list = 'Lenovo Dell HP Viao Mac Other'
@@ -130,9 +152,55 @@ class Keyboard(LaptopCat):
 	brand = models.CharField(max_length=lenn, choices=brand_CHOICES, default='Other')	
 	gaming = models.BooleanField(default=False)
 
+	def get_absolute_url(self):
+		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'Keyboard'})
 
-	
+	def __str__(self):
+		return 'Keyboard'
 
+
+"""Books"""
+class BookCat(Post):
+	pass 
+
+class Novel(BookCat):
+	genre_list = 'Fiction Comedy Classic Biography Action Nonfiction Mystery Fantasy Drama'
+	genre_CHOICES = func_CHOICES(genre_list)
+	genre = models.CharField(max_length=lenn, choices=genre_CHOICES, default="Classic")
+	novel_author = models.CharField(max_length=lenn, default="anonymous")
+
+	def get_absolute_url(self):
+		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'Novel'})
+
+	def __str__(self):
+		return 'Novel'
+
+class Engg(BookCat):
+	branch_list = 'Computer Mechanical ENTC Chemical Civil ETX'
+	branch_CHOICES = func_CHOICES(branch_list)
+	branch = models.CharField(max_length=lenn, choices=branch_CHOICES, default="Computer")
+	subject = models.CharField(max_length=lenn, default="Computer Networks")
+
+	def get_absolute_url(self):
+		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'Engg'})
+
+	def __str__(self):
+		return 'Engg'
+
+class School(BookCat):
+	board_list = 'CBSE StateBoard other'
+	board_CHOICES = func_CHOICES(board_list)
+	board = models.CharField(max_length=lenn, choices=board_CHOICES, default="CBSE")
+	std_list = '1 2 3 4 5 6 7 8 9 10 11 12'
+	std_CHOICES = func_CHOICES(std_list)
+	std = models.CharField(max_length=lenn, choices=std_CHOICES, default="12")
+	subject = models.CharField(max_length=lenn, default="Math")
+
+	def get_absolute_url(self):
+		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'School'})
+
+	def __str__(self):
+		return 'School'
 
 # class Mobile(Post):
 # 	#mobile unique fields

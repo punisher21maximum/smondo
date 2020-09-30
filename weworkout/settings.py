@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_filters',
     'admin_auto_filters',#search in dropdown
+    'google_analytics',#google
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -120,6 +121,10 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+GOOGLE_ANALYTICS = {
+    'google_analytics_id': 'UA-173119092-2',
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/

@@ -7,20 +7,26 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from .models import Post, Bike, Scooty, Bicycle, Mobile
+
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from django.core.mail import send_mail
+
+
 from django.urls import reverse_lazy
-
+from .models import (Post, 
+    Bike, Scooty, #Bicycle, 
+    Mobile,  MobileCharger, #MobileCover,
+    Laptop, Mouse, Keyboard,
+    Novel, Engg, School
+    )
 model_dict = {
-    "Post":Post, 
-    "Bike":Bike, 
-    "Scooty":Scooty, 
-    "Bicycle":Bicycle, 
-    "Mobile":Mobile
+    "post" : Post, 
+    "bike": Bike, "scooty" : Scooty,  
+    "mobile" : Mobile, "mobilecharger" : MobileCharger,
+    "laptop" : Laptop,  "mouse" : Mouse, "keyboard" : Keyboard,
+    "novel" : Novel, "engg":Engg, "school":School
     }
-
 
 #get my fields
 def my_get_model_fields(model):
@@ -53,7 +59,7 @@ class SubcatListView(ListView):
     def get_context_data(self, **kwargs):
         """override "get_context_data" to pass model_name to subcat_list.html"""
         context = super().get_context_data(**kwargs)
-        context['class_name'] = self.model._meta.model_name.title() # kwargs.get('model', None) 
+        context['class_name'] = self.model._meta.model_name.lower() # kwargs.get('model', None) 
         return context
 
 #DetailView
@@ -65,7 +71,7 @@ class SubcatDetailView(DetailView):
     template_name = 'blog/subcat_detail.html'
 
     def dispatch(self, request, *args, **kwargs):
-        self.model = model_dict[ kwargs.get('model', None) ]
+        self.model = model_dict[ kwargs.get('model', None).lower() ]
         return super(SubcatDetailView, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
@@ -74,7 +80,7 @@ class SubcatDetailView(DetailView):
     def get_context_data(self, **kwargs):
         """override "get_context_data" to pass model_name to subcat_list.html"""
         context = super().get_context_data(**kwargs)
-        context['class_name'] = self.model._meta.model_name.title() # kwargs.get('model', None) 
+        context['class_name'] = self.model._meta.model_name.lower() # kwargs.get('model', None) 
         return context
 
 #CreateView
@@ -96,7 +102,7 @@ class SubcatCreateView(LoginRequiredMixin, CreateView):
 
     def get_form_class(self):
         """overriding "get_form_class" func to get fields for model passed in URL"""
-        self.fields = my_get_model_fields(model_dict[self.model._meta.model_name.title()])
+        self.fields = my_get_model_fields(model_dict[self.model._meta.model_name.lower()])
         return super(SubcatCreateView, self).get_form_class()
 
 #UpdateView
@@ -121,7 +127,7 @@ class SubcatUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def get_form_class(self):
         """overriding "get_form_class" func to get fields for model passed in URL"""
-        self.fields = my_get_model_fields(model_dict[self.model._meta.model_name.title()])
+        self.fields = my_get_model_fields(model_dict[self.model._meta.model_name.lower()])
         return super(SubcatUpdateView, self).get_form_class()
 
 #DeleteView
@@ -143,9 +149,9 @@ class SubcatDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def get_context_data(self, **kwargs):#class_name
         """override "get_context_data" to pass model_name to subcat_list.html"""
         context = super().get_context_data(**kwargs)
-        context['class_name'] = self.model._meta.model_name.title() # kwargs.get('model', None) 
+        context['class_name'] = self.model._meta.model_name.lower() # kwargs.get('model', None) 
         return context
 
     def get_success_url(self):
-        return reverse_lazy('subcat-list', kwargs={'model':self.model._meta.model_name.title()})
+        return reverse_lazy('subcat-list', kwargs={'model':self.model._meta.model_name.lower()})
 

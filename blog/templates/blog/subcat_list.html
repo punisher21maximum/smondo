@@ -1,7 +1,10 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% load myfilters %}
-
+{% load google_analytics_tags %}
+<div style="display:none">
+    <img src="{% google_analytics %}" width="0" height="0" />
+</div>
 
 {% block content %}
 
@@ -11,12 +14,26 @@
  
       <div class="card m-2 rounded-0 card_shadow " style="width: 18rem; ">
         <!-- images -->
-        {% if class_name  == "Bike" %}
-          <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='Bike' %}"> 
-        {% elif class_name  == "Scooty" %}
-        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='Scooty' %}"> 
-        {% elif class_name  == "Mobile" %}
-        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='Mobile' %}"> 
+        {% if class_name  == "bike" %}
+          <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='bike' %}"> 
+        {% elif class_name  == "scooty" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='scooty' %}"> 
+        {% elif class_name  == "mobile" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='mobile' %}"> 
+        {% elif class_name  == "novel" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='novel' %}">
+        {% elif class_name  == "engg" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='engg' %}">  
+        {% elif class_name  == "school" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='school' %}">  
+        {% elif class_name  == "laptop" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='laptop' %}">  
+        {% elif class_name  == "mouse" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='mouse' %}">  
+        {% elif class_name  == "keyboard" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='keyboard' %}"> 
+        {% elif class_name  == "mobilecharger" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='mobilecharger' %}"> 
         {% endif %} 
           <img class="d-block w-100" src="{{ post.img1.url }}" height="250px;" alt="First slide">
         </a>
@@ -27,7 +44,7 @@
             <h5>Rs {{post.sell_price}}/-</h5> 
             <!-- <small>{{post.date_posted|date:"M t, Y"}}</small> -->
             <h7>{{post.title}}</h7>
-            <small> - {{post.desc|truncatechars:65}}</small>
+            <small> - {{post.desc|truncatechars:50}}</small>
 
             <!-- price  -->
             <table class="table table-hover mb-0" style="font-size: 12px;">
@@ -49,12 +66,24 @@
             <!-- price end  -->
  
             <!-- details Unique --> 
-            {% if class_name  == "Bike" %}
+            {% if class_name  == "bike" %}
                 {% include "blog/bike_list2.html" %}
-            {% elif class_name  == "Scooty" %}
+            {% elif class_name  == "scooty" %}
                 {% include "blog/scooty_list2.html" %}
-            {% elif class_name  == "Mobile" %}
+            {% elif class_name  == "mobile" %}
                 {% include "blog/mobile_list2.html" %}
+            {% elif class_name  == "novel" %}
+                {% include "blog/novel_list2.html" %}
+            {% elif class_name  == "engg" %}
+                {% include "blog/engg_list2.html" %}
+            {% elif class_name  == "school" %}
+                {% include "blog/school_list2.html" %}
+            {% elif class_name  == "laptop" %}
+                {% include "blog/laptop_list2.html" %}
+            {% elif class_name  == "keyboard" %}
+                {% include "blog/keyboard_list2.html" %}
+            {% elif class_name  == "mouse" %}
+                {% include "blog/mouse_list2.html" %}
             {% endif %}          
             <!-- details Unique end -->
 

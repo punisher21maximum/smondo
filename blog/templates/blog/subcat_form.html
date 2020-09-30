@@ -1,5 +1,9 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
+{% load google_analytics_tags %}
+<div style="display:none">
+    <img src="{% google_analytics %}" width="0" height="0" />
+</div>
 {% block content %}
     <div class="bg-dark text-white p-3 ml-3 my-2">
         <form method="POST" enctype="multipart/form-data">

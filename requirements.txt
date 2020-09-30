@@ -14,3 +14,14 @@ social-auth-core==3.3.3
 speedtest-cli==2.1.2
 sqlparse==0.3.1
 zipp==3.1.0
+Django==2.2.5 
+amqp==1.4.9 
+anyjson==0.3.3 
+beautifulsoup4==4.9.1 
+billiar==3.3.0.23 
+celery==3.1.26.post2 
+django-celery==3.3.1 
+django-google-analytics-app==4.4.1 
+kombu==3.0.37 
+soupsieve==2.0.1 
+structlog==20.1.0

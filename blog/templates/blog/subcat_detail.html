@@ -1,4 +1,8 @@
 {% extends "blog/base.html" %}
+{% load google_analytics_tags %}
+<div style="display:none">
+    <img src="{% google_analytics %}" width="0" height="0" />
+</div>
 {% block content %}
   <article class="  content-section">
     <!-- <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}"> -->
@@ -9,15 +13,36 @@
         {% if object.author == user %}
           <div>
             <!-- update and delete -->
-            {% if class_name  == "Bike" %}
-            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'subcat-update' pk=object.id model='Bike' %}">Update</a>
-            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'subcat-delete' pk=object.id model='Bike' %}">Delete</a>
-            {% elif class_name  == "Scooty" %}
-            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'subcat-update' pk=object.id model='Scooty' %}">Update</a>
-            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'subcat-delete' pk=object.id model='Scooty' %}">Delete</a>            
-            {% elif class_name  == "Mobile" %}
-            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'subcat-update' pk=object.id model='Mobile' %}">Update</a>
-            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'subcat-delete' pk=object.id model='Mobile' %}">Delete</a>            
+            {% if class_name  == "bike" %}
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'subcat-update' pk=object.id model='bike' %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'subcat-delete' pk=object.id model='bike' %}">Delete</a>
+            {% elif class_name  == "scooty" %}
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'subcat-update' pk=object.id model='scooty' %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'subcat-delete' pk=object.id model='scooty' %}">Delete</a>            
+            {% elif class_name  == "mobile" %}
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'subcat-update' pk=object.id model='mobile' %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'subcat-delete' pk=object.id model='mobile' %}">Delete</a>            
+            {% elif class_name  == "mobilecharger" %}
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'subcat-update' pk=object.id model='mobilecharger' %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'subcat-delete' pk=object.id model='mobilecharger' %}">Delete</a> 
+            {% elif class_name  == "laptop" %}
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'subcat-update' pk=object.id model='Laptop' %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'subcat-delete' pk=object.id model='Laptop' %}">Delete</a> 
+            {% elif class_name  == "mouse" %}
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'subcat-update' pk=object.id model='Mouse' %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'subcat-delete' pk=object.id model='Mouse' %}">Delete</a> 
+            {% elif class_name  == "keyboard" %}
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'subcat-update' pk=object.id model='keyboard' %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'subcat-delete' pk=object.id model='keyboard' %}">Delete</a> 
+            {% elif class_name  == "novel" %}
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'subcat-update' pk=object.id model='novel' %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'subcat-delete' pk=object.id model='novel' %}">Delete</a> 
+            {% elif class_name  == "engg" %}
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'subcat-update' pk=object.id model='engg' %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'subcat-delete' pk=object.id model='engg' %}">Delete</a> 
+            {% elif class_name  == "school" %}
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'subcat-update' pk=object.id model='school' %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'subcat-delete' pk=object.id model='school' %}">Delete</a> 
             {% endif %}
           </div>
         {% endif %}
@@ -31,13 +56,25 @@
             <!-- details unique -->
             <h4>Details</h4>
             <div style="font-size: 12px;">
-                {% if class_name  == "Bike" %}
-                    {% include "blog/bike_list2.html" %}
-                {% elif class_name  == "Scooty" %}
-                    {% include "blog/scooty_list2.html" %}
-                {% elif class_name  == "Mobile" %}
-                    {% include "blog/mobile_list2.html" %}
-                {% endif %}
+            {% if class_name  == "bike" %}
+                {% include "blog/bike_list2.html" %}
+            {% elif class_name  == "scooty" %}
+                {% include "blog/scooty_list2.html" %}
+            {% elif class_name  == "mobile" %}
+                {% include "blog/mobile_list2.html" %}
+            {% elif class_name  == "novel" %}
+                {% include "blog/novel_list2.html" %}
+            {% elif class_name  == "engg" %}
+                {% include "blog/engg_list2.html" %}
+            {% elif class_name  == "school" %}
+                {% include "blog/school_list2.html" %}
+            {% elif class_name  == "laptop" %}
+                {% include "blog/laptop_list2.html" %}
+            {% elif class_name  == "keyboard" %}
+                {% include "blog/keyboard_list2.html" %}
+            {% elif class_name  == "mouse" %}
+                {% include "blog/mouse_list2.html" %}
+            {% endif %} 
             </div>
 
             <h4>Description</h4>
