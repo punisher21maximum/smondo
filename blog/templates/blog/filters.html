@@ -1,69 +1,135 @@
 {% load crispy_forms_tags %}
-<div class="content-section " 
-          style="background-color:#533b78; font-size: 14px; ">
+<div class="content-section p-3" 
+          style="  font-weight: 500; font-size: 13px;  ">
 
-            <h3 class="text-white"><b>ConviMax<b></h3>
+            <!-- <h3 class="text-white"><b>ConviMax<b></h3> -->
 
             <div >
-              <b class="text-white">{{"Maximum Convinience"|upper}}</b><hr>
+              <!-- <b class="text-white">{{"Maximum Convinience"|upper}}</b><hr> -->
 
-              <form method="GET" class="text-white">
+              <form method="GET" class="text-dark">
                 <!-- {{ filter.form|crispy }} -->
                 <div class="form-row">
                     <div class="form-group col-md-12 m-0 p-0"> 
-                      {{ filter.form.title|as_crispy_field }}
-                      {{ filter.form.desc|as_crispy_field }}
+                      <p>{{ filter.form.title }}</p>
+                      <!-- <p>{{ filter.form.desc }}</p> -->
                   
                     </div>
-                    <div class="form-group col-md-6 ">
-                      {{ filter.form.year_min|as_crispy_field }}
+
+                    <div class="form-group col-md-2  ">
+                      {{"Year"}}
                     </div>
-                    <div class="form-group col-md-6 ">
-                      {{ filter.form.year_max|as_crispy_field|default:"2000"  }}
+                    <div class="form-group col-md-4  ">
+                      {{ filter.form.year_min }}
                     </div>
-                    <!-- min -->
-                    <div class="form-group col-md-6 "> 
-                      {{ filter.form.sell_price__gt|as_crispy_field }}
+                    <div class="form-group col-md-4 ">
+                      {{ filter.form.year_max  }}
                     </div>
-                    <!-- max -->
-                    <div class="form-group col-md-6 "> 
-                      {{ filter.form.sell_price__lt|as_crispy_field }}
+                    <div class="form-group col-md-2  ">
+                      <button type="submit" class="btn btn-outline-dark btn-sm" style="height:35px;">
+                        <p class="text-center" >Go</p>
+                      </button>
                     </div>
+                    
                     <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#2" aria-expanded="false"  >
                       Button with data-target
                     </button> -->
                     <!-- collapse over -->
                     <!-- min -->
                     <!-- <div class="row collapse m-0" id="2"> -->
-                      
-                      <div class="form-group col-md-6 "> 
-                        {{ filter.form.sell_price__gt|as_crispy_field }}
-                        {{ filter.form.rent_hour__gt|as_crispy_field }}
-                        {{ filter.form.rent_day__gt|as_crispy_field }}
-                        {{ filter.form.rent_week__gt|as_crispy_field }}
-                        {{ filter.form.rent_month__gt|as_crispy_field }}
-         
-                      </div>
-                      <!-- max -->
-                      <div class="form-group col-md-6"> 
-                        {{ filter.form.sell_price__lt|as_crispy_field }}
-                        {{ filter.form.rent_hour__lt|as_crispy_field }}
-                        {{ filter.form.rent_day__lt|as_crispy_field }}
-                        {{ filter.form.rent_week__lt|as_crispy_field }}
-                        {{ filter.form.rent_month__lt|as_crispy_field }}
                     
-                      </div>
+                    <!-- sell  -->
+                    <div class="form-group col-md-2  ">
+                      {{"Buy"}}
+                    </div>
+                    <div class="form-group col-md-4  ">
+                      <p>{{ filter.form.sell_price__gt }}</p>
+                    </div>
+                    <div class="form-group col-md-4 ">
+                      <p>{{ filter.form.sell_price__lt }}</p>
+                    </div>
+                    <div class="form-group col-md-2  ">
+                      <button type="submit" class="btn btn-outline-dark btn-sm" style="height:35px;">
+                        <p class="text-center" >Go</p>
+                      </button>
+                    </div>
+                    
+                    <!-- rent hour  -->
+                    <div class="form-group col-md-2  ">
+                      {{"Rent hour"}}
+                    </div>
+                    <div class="form-group col-md-4  ">
+                      <p>{{ filter.form.rent_hour__gt }}</p>
+                    </div>
+                    <div class="form-group col-md-4 ">
+                      <p>{{ filter.form.rent_hour__lt }}</p>
+                    </div>
+                    <div class="form-group col-md-2  ">
+                      <button type="submit" class="btn btn-outline-dark btn-sm" style="height:35px;">
+                        <p class="text-center" >Go</p>
+                      </button>
+                    </div>
+                    <!-- rent day  -->
+                    <div class="form-group col-md-2  ">
+                      {{"Rent Day"}}
+                    </div>
+                    <div class="form-group col-md-4  ">
+                      <p>{{ filter.form.rent_day__gt }}</p>
+                    </div>
+                    <div class="form-group col-md-4 ">
+                      <p>{{ filter.form.rent_day__lt }}</p>
+                    </div>
+                    <div class="form-group col-md-2  ">
+                      <button type="submit" class="btn btn-outline-dark btn-sm" style="height:35px;">
+                        <p class="text-center" >Go</p>
+                      </button>
+                    </div>
+                    <!-- rent week  -->
+                    <div class="form-group col-md-2  ">
+                      {{"Rent Week"}}
+                    </div>
+                    <div class="form-group col-md-4  ">
+                      <p>{{ filter.form.rent_week__gt }}</p>
+                    </div>
+                    <div class="form-group col-md-4 ">
+                      <p>{{ filter.form.rent_week__lt }}</p>
+                    </div>
+                    <div class="form-group col-md-2  ">
+                      <button type="submit" class="btn btn-outline-dark btn-sm" style="height:35px;">
+                        <p class="text-center" >Go</p>
+                      </button>
+                    </div>
+                    <!-- rent month  -->
+                    <div class="form-group col-md-2  ">
+                      {{"Rent Month"}}
+                    </div>
+                    <div class="form-group col-md-4  ">
+                      <p>{{ filter.form.rent_month__gt }}</p>
+                    </div>
+                    <div class="form-group col-md-4 ">
+                      <p>{{ filter.form.rent_month__lt }}</p>
+                    </div>
+                    <div class="form-group col-md-2  ">
+                      <button type="submit" class="btn btn-outline-dark btn-sm" style="height:35px;">
+                        <p class="text-center" >Go</p>
+                      </button>
+                    </div>
 
-                    <!-- </div> -->
-                    <!-- collapse over -->
+                      
+                     
+    
+              </div>
 
-               
-                
-                  <button type="submit" class="text-center button_engg btn-block  mt-10">
-                    <p class="text-center " >search</p>
-                  </button>
-                <div> 
-              </form>
+              <!-- </div> -->
+              <!-- collapse over -->
+
+          
+          
+            <button type="submit" class="text-center button_engg btn-block  mt-10">
+              <p class="text-center " >search</p>
+            </button>
+          <div> 
+        </form>
               
               <!-- <ul class="list-group ">
                 

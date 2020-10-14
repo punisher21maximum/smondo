@@ -22,7 +22,12 @@ from .models import (Post,
     )
 
 # import filters
-from . filters import BikesFilter, ScootysFilter, MobilesFilter
+from . filters import ( 
+                        BikesFilter, ScootysFilter, 
+                        MobilesFilter, MobileChargersFilter, 
+                        LaptopsFilter,  MousesFilter, KeyboardsFilter,
+                        NovelsFilter, EnggsFilter, SchoolsFilter
+                        )
 
 # import ends    
 model_dict = {
@@ -30,7 +35,7 @@ model_dict = {
     "bike": Bike, "scooty" : Scooty,  
     "mobile" : Mobile, "mobilecharger" : MobileCharger,
     "laptop" : Laptop,  "mouse" : Mouse, "keyboard" : Keyboard,
-    "novel" : Novel, "engg":Engg, "school":School
+    "novel" : Novel, "engg": Engg, "school": School
     }
 
 #get my fields
@@ -49,10 +54,9 @@ def get_model_filter_func(model_name):
     model_filter_dict = {
     # "post" : Post, 
     "bike": BikesFilter, "scooty" : ScootysFilter,  
-    # "mobile" : Mobile, 
-    "mobilecharger" : MobilesFilter,
-    # "laptop" : Laptop,  "mouse" : Mouse, "keyboard" : Keyboard,
-    # "novel" : Novel, "engg":Engg, "school":School
+    "mobile" : MobilesFilter, "mobilecharger" : MobileChargersFilter,
+    "laptop" : LaptopsFilter,  "mouse" : MousesFilter, "keyboard" : KeyboardsFilter,
+    "novel" : NovelsFilter, "engg":EnggsFilter, "school":SchoolsFilter
     }
 
     return model_filter_dict[model_name]
