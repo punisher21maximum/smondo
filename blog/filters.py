@@ -9,7 +9,7 @@ from .models import (Post,
 
 from django.forms.widgets import TextInput
 
-class BikesFilter(django_filters.FilterSet):
+class CommonFilter(django_filters.FilterSet):
 	# common: price - 5, min max, year - min max, desc - contains
 	title = django_filters.CharFilter(lookup_expr='icontains', label='Title', 
 	widget=TextInput(attrs={'placeholder': 'search bikes...'}))
@@ -51,6 +51,50 @@ class BikesFilter(django_filters.FilterSet):
 	widget=TextInput(attrs={'placeholder': 'min'}))
 	rent_month__lt = django_filters.NumberFilter(field_name='rent_month', lookup_expr='lte', label='rent month max', 
 	widget=TextInput(attrs={'placeholder': 'max'}))
+
+
+class BikesFilter(CommonFilter):
+	# # common: price - 5, min max, year - min max, desc - contains
+	# title = django_filters.CharFilter(lookup_expr='icontains', label='Title', 
+	# widget=TextInput(attrs={'placeholder': 'search bikes...'}))
+	# desc = django_filters.CharFilter(lookup_expr='icontains', label='Desc', 
+	# widget=TextInput(attrs={'placeholder': 'search description...'}))
+	# year = django_filters.NumberFilter()
+	# year_min = django_filters.NumberFilter(field_name='year', lookup_expr='gte', label='Start year', 
+	# widget=TextInput(attrs={'placeholder': 'start'}))
+	# year_max = django_filters.NumberFilter(field_name='year', lookup_expr='lte', label='End year', 
+	# widget=TextInput(attrs={'placeholder': 'end'}))
+
+	# #
+	# sell_price = django_filters.NumberFilter()
+	# sell_price__gt = django_filters.NumberFilter(field_name='sell_price', lookup_expr='gte', label='sell price min', 
+	# widget=TextInput(attrs={'placeholder': 'min'}))
+	# sell_price__lt = django_filters.NumberFilter(field_name='sell_price', lookup_expr='lte', label='sell price max', 
+	# widget=TextInput(attrs={'placeholder': 'max'}))
+	
+	# rent_hour = django_filters.NumberFilter()
+	# rent_hour__gt = django_filters.NumberFilter(field_name='rent_hour', lookup_expr='gte', label='rent hour min', 
+	# widget=TextInput(attrs={'placeholder': 'min'}))
+	# rent_hour__lt = django_filters.NumberFilter(field_name='rent_hour', lookup_expr='lte', label='rent hour max', 
+	# widget=TextInput(attrs={'placeholder': 'max'}))
+	
+	# rent_day = django_filters.NumberFilter()
+	# rent_day__gt = django_filters.NumberFilter(field_name='rent_day', lookup_expr='gte', label='rent day min', 
+	# widget=TextInput(attrs={'placeholder': 'min'}))
+	# rent_day__lt = django_filters.NumberFilter(field_name='rent_day', lookup_expr='lte', label='rent day max', 
+	# widget=TextInput(attrs={'placeholder': 'max'}))
+	
+	# rent_week = django_filters.NumberFilter()
+	# rent_week__gt = django_filters.NumberFilter(field_name='rent_week', lookup_expr='gte', label='rent week min', 
+	# widget=TextInput(attrs={'placeholder': 'min'}))
+	# rent_week__lt = django_filters.NumberFilter(field_name='rent_week', lookup_expr='lte', label='rent week max', 
+	# widget=TextInput(attrs={'placeholder': 'max'}))
+	
+	# rent_month = django_filters.NumberFilter()
+	# rent_month__gt = django_filters.NumberFilter(field_name='rent_month', lookup_expr='gte', label='rent month min', 
+	# widget=TextInput(attrs={'placeholder': 'min'}))
+	# rent_month__lt = django_filters.NumberFilter(field_name='rent_month', lookup_expr='lte', label='rent month max', 
+	# widget=TextInput(attrs={'placeholder': 'max'}))
 	#
 	km = django_filters.NumberFilter()
 	km__gt = django_filters.NumberFilter(field_name='km', lookup_expr='gte', label='km min')
@@ -83,35 +127,39 @@ class BikesFilter(django_filters.FilterSet):
 			# 'with_helmet'
 		)
 
-class ScootysFilter(django_filters.FilterSet):
-	# common: price - 5, min max, year - min max, desc - contains
-	title = django_filters.CharFilter(lookup_expr='icontains', label='Title')
-	desc = django_filters.CharFilter(lookup_expr='icontains', label='Desc')
-	year = django_filters.NumberFilter()
-	year_min = django_filters.NumberFilter(field_name='year', lookup_expr='gte', label='Start year')
-	year_max = django_filters.NumberFilter(field_name='year', lookup_expr='lte', label='End year')
+class ScootysFilter(CommonFilter):
+	# # common: price - 5, min max, year - min max, desc - contains
+	# title = django_filters.CharFilter(lookup_expr='icontains', label='Title')
+	# desc = django_filters.CharFilter(lookup_expr='icontains', label='Desc')
+	# year = django_filters.NumberFilter()
+	# year_min = django_filters.NumberFilter(field_name='year', lookup_expr='gte', label='Start year')
+	# year_max = django_filters.NumberFilter(field_name='year', lookup_expr='lte', label='End year')
 
-	#
-	sell_price = django_filters.NumberFilter()
-	sell_price__gt = django_filters.NumberFilter(field_name='sell_price', lookup_expr='gte', label='sell price min')
-	sell_price__lt = django_filters.NumberFilter(field_name='sell_price', lookup_expr='lte', label='sell price max')
+	# #
+	# sell_price = django_filters.NumberFilter()
+	# sell_price__gt = django_filters.NumberFilter(field_name='sell_price', lookup_expr='gte', label='sell price min')
+	# sell_price__lt = django_filters.NumberFilter(field_name='sell_price', lookup_expr='lte', label='sell price max')
 	
-	rent_hour = django_filters.NumberFilter()
-	rent_hour__gt = django_filters.NumberFilter(field_name='rent_hour', lookup_expr='gte', label='rent hour min')
-	rent_hour__lt = django_filters.NumberFilter(field_name='rent_hour', lookup_expr='lte', label='rent hour max')
+	# rent_hour = django_filters.NumberFilter()
+	# rent_hour__gt = django_filters.NumberFilter(field_name='rent_hour', lookup_expr='gte', label='rent hour min')
+	# rent_hour__lt = django_filters.NumberFilter(field_name='rent_hour', lookup_expr='lte', label='rent hour max')
 	
-	rent_day = django_filters.NumberFilter()
-	rent_day__gt = django_filters.NumberFilter(field_name='rent_day', lookup_expr='gte', label='rent day min')
-	rent_day__lt = django_filters.NumberFilter(field_name='rent_day', lookup_expr='lte', label='rent day max')
+	# rent_day = django_filters.NumberFilter()
+	# rent_day__gt = django_filters.NumberFilter(field_name='rent_day', lookup_expr='gte', label='rent day min')
+	# rent_day__lt = django_filters.NumberFilter(field_name='rent_day', lookup_expr='lte', label='rent day max')
 	
-	rent_week = django_filters.NumberFilter()
-	rent_week__gt = django_filters.NumberFilter(field_name='rent_week', lookup_expr='gte', label='rent week min')
-	rent_week__lt = django_filters.NumberFilter(field_name='rent_week', lookup_expr='lte', label='rent week max')
+	# rent_week = django_filters.NumberFilter()
+	# rent_week__gt = django_filters.NumberFilter(field_name='rent_week', lookup_expr='gte', label='rent week min')
+	# rent_week__lt = django_filters.NumberFilter(field_name='rent_week', lookup_expr='lte', label='rent week max')
 	
-	rent_month = django_filters.NumberFilter()
-	rent_month__gt = django_filters.NumberFilter(field_name='rent_month', lookup_expr='gte', label='rent month min')
-	rent_month__lt = django_filters.NumberFilter(field_name='rent_month', lookup_expr='lte', label='rent month max')
-	#
+	# rent_month = django_filters.NumberFilter()
+	# rent_month__gt = django_filters.NumberFilter(field_name='rent_month', lookup_expr='gte', label='rent month min')
+	# rent_month__lt = django_filters.NumberFilter(field_name='rent_month', lookup_expr='lte', label='rent month max')
+	# #
+
+	title = django_filters.CharFilter(lookup_expr='icontains', label='Title', 
+	widget=TextInput(attrs={'placeholder': 'search scooty...'}))
+
 	km = django_filters.NumberFilter()
 	km__gt = django_filters.NumberFilter(field_name='km', lookup_expr='gte', label='km min')
 	km__lt = django_filters.NumberFilter(field_name='km', lookup_expr='lte', label='km max')
@@ -143,42 +191,10 @@ class ScootysFilter(django_filters.FilterSet):
 			# 'with_helmet'
 		)
 
-class MobilesFilter(django_filters.FilterSet):
-	# common: price - 5, min max, year - min max, desc - contains
-	title = django_filters.CharFilter(lookup_expr='icontains', label='Title')
-	desc = django_filters.CharFilter(lookup_expr='icontains', label='Desc')
-	year = django_filters.NumberFilter()
-	year_min = django_filters.NumberFilter(field_name='year', lookup_expr='gte', label='Start year')
-	year_max = django_filters.NumberFilter(field_name='year', lookup_expr='lte', label='End year')
+class MobilesFilter(CommonFilter):
 
-	#
-	sell_price = django_filters.NumberFilter()
-	sell_price__gt = django_filters.NumberFilter(field_name='sell_price', lookup_expr='gte', label='sell price min')
-	sell_price__lt = django_filters.NumberFilter(field_name='sell_price', lookup_expr='lte', label='sell price max')
-	
-	rent_hour = django_filters.NumberFilter()
-	rent_hour__gt = django_filters.NumberFilter(field_name='rent_hour', lookup_expr='gte', label='rent hour min')
-	rent_hour__lt = django_filters.NumberFilter(field_name='rent_hour', lookup_expr='lte', label='rent hour max')
-	
-	rent_day = django_filters.NumberFilter()
-	rent_day__gt = django_filters.NumberFilter(field_name='rent_day', lookup_expr='gte', label='rent day min')
-	rent_day__lt = django_filters.NumberFilter(field_name='rent_day', lookup_expr='lte', label='rent day max')
-	
-	rent_week = django_filters.NumberFilter()
-	rent_week__gt = django_filters.NumberFilter(field_name='rent_week', lookup_expr='gte', label='rent week min')
-	rent_week__lt = django_filters.NumberFilter(field_name='rent_week', lookup_expr='lte', label='rent week max')
-	
-	rent_month = django_filters.NumberFilter()
-	rent_month__gt = django_filters.NumberFilter(field_name='rent_month', lookup_expr='gte', label='rent month min')
-	rent_month__lt = django_filters.NumberFilter(field_name='rent_month', lookup_expr='lte', label='rent month max')
-	#
-	km = django_filters.NumberFilter()
-	km__gt = django_filters.NumberFilter(field_name='km', lookup_expr='gte', label='km min')
-	km__lt = django_filters.NumberFilter(field_name='km', lookup_expr='lte', label='km max')
-
-	cc = django_filters.NumberFilter()
-	cc__gt = django_filters.NumberFilter(field_name='cc', lookup_expr='gte', label='cc min')
-	cc__lt = django_filters.NumberFilter(field_name='cc', lookup_expr='lte', label='cc max')
+	title = django_filters.CharFilter(lookup_expr='icontains', label='Title', 
+	widget=TextInput(attrs={'placeholder': 'search mobile...'}))
 
 	class Meta:
 		model = Mobile
@@ -203,42 +219,10 @@ class MobilesFilter(django_filters.FilterSet):
 			# 'with_helmet'
 		)
 
-class MobileChargersFilter(django_filters.FilterSet):
-	# common: price - 5, min max, year - min max, desc - contains
-	title = django_filters.CharFilter(lookup_expr='icontains', label='Title')
-	desc = django_filters.CharFilter(lookup_expr='icontains', label='Desc')
-	year = django_filters.NumberFilter()
-	year_min = django_filters.NumberFilter(field_name='year', lookup_expr='gte', label='Start year')
-	year_max = django_filters.NumberFilter(field_name='year', lookup_expr='lte', label='End year')
+class MobileChargersFilter(CommonFilter):
 
-	#
-	sell_price = django_filters.NumberFilter()
-	sell_price__gt = django_filters.NumberFilter(field_name='sell_price', lookup_expr='gte', label='sell price min')
-	sell_price__lt = django_filters.NumberFilter(field_name='sell_price', lookup_expr='lte', label='sell price max')
-	
-	rent_hour = django_filters.NumberFilter()
-	rent_hour__gt = django_filters.NumberFilter(field_name='rent_hour', lookup_expr='gte', label='rent hour min')
-	rent_hour__lt = django_filters.NumberFilter(field_name='rent_hour', lookup_expr='lte', label='rent hour max')
-	
-	rent_day = django_filters.NumberFilter()
-	rent_day__gt = django_filters.NumberFilter(field_name='rent_day', lookup_expr='gte', label='rent day min')
-	rent_day__lt = django_filters.NumberFilter(field_name='rent_day', lookup_expr='lte', label='rent day max')
-	
-	rent_week = django_filters.NumberFilter()
-	rent_week__gt = django_filters.NumberFilter(field_name='rent_week', lookup_expr='gte', label='rent week min')
-	rent_week__lt = django_filters.NumberFilter(field_name='rent_week', lookup_expr='lte', label='rent week max')
-	
-	rent_month = django_filters.NumberFilter()
-	rent_month__gt = django_filters.NumberFilter(field_name='rent_month', lookup_expr='gte', label='rent month min')
-	rent_month__lt = django_filters.NumberFilter(field_name='rent_month', lookup_expr='lte', label='rent month max')
-	#
-	km = django_filters.NumberFilter()
-	km__gt = django_filters.NumberFilter(field_name='km', lookup_expr='gte', label='km min')
-	km__lt = django_filters.NumberFilter(field_name='km', lookup_expr='lte', label='km max')
-
-	cc = django_filters.NumberFilter()
-	cc__gt = django_filters.NumberFilter(field_name='cc', lookup_expr='gte', label='cc min')
-	cc__lt = django_filters.NumberFilter(field_name='cc', lookup_expr='lte', label='cc max')
+	title = django_filters.CharFilter(lookup_expr='icontains', label='Title', 
+	widget=TextInput(attrs={'placeholder': 'search chargers...'}))
 
 	class Meta:
 		model = MobileCharger
@@ -263,42 +247,9 @@ class MobileChargersFilter(django_filters.FilterSet):
 			# 'with_helmet'
 		)
 
-class NovelsFilter(django_filters.FilterSet):
-	# common: price - 5, min max, year - min max, desc - contains
-	title = django_filters.CharFilter(lookup_expr='icontains', label='Title')
-	desc = django_filters.CharFilter(lookup_expr='icontains', label='Desc')
-	year = django_filters.NumberFilter()
-	year_min = django_filters.NumberFilter(field_name='year', lookup_expr='gte', label='Start year')
-	year_max = django_filters.NumberFilter(field_name='year', lookup_expr='lte', label='End year')
-
-	#
-	sell_price = django_filters.NumberFilter()
-	sell_price__gt = django_filters.NumberFilter(field_name='sell_price', lookup_expr='gte', label='sell price min')
-	sell_price__lt = django_filters.NumberFilter(field_name='sell_price', lookup_expr='lte', label='sell price max')
-	
-	rent_hour = django_filters.NumberFilter()
-	rent_hour__gt = django_filters.NumberFilter(field_name='rent_hour', lookup_expr='gte', label='rent hour min')
-	rent_hour__lt = django_filters.NumberFilter(field_name='rent_hour', lookup_expr='lte', label='rent hour max')
-	
-	rent_day = django_filters.NumberFilter()
-	rent_day__gt = django_filters.NumberFilter(field_name='rent_day', lookup_expr='gte', label='rent day min')
-	rent_day__lt = django_filters.NumberFilter(field_name='rent_day', lookup_expr='lte', label='rent day max')
-	
-	rent_week = django_filters.NumberFilter()
-	rent_week__gt = django_filters.NumberFilter(field_name='rent_week', lookup_expr='gte', label='rent week min')
-	rent_week__lt = django_filters.NumberFilter(field_name='rent_week', lookup_expr='lte', label='rent week max')
-	
-	rent_month = django_filters.NumberFilter()
-	rent_month__gt = django_filters.NumberFilter(field_name='rent_month', lookup_expr='gte', label='rent month min')
-	rent_month__lt = django_filters.NumberFilter(field_name='rent_month', lookup_expr='lte', label='rent month max')
-	#
-	km = django_filters.NumberFilter()
-	km__gt = django_filters.NumberFilter(field_name='km', lookup_expr='gte', label='km min')
-	km__lt = django_filters.NumberFilter(field_name='km', lookup_expr='lte', label='km max')
-
-	cc = django_filters.NumberFilter()
-	cc__gt = django_filters.NumberFilter(field_name='cc', lookup_expr='gte', label='cc min')
-	cc__lt = django_filters.NumberFilter(field_name='cc', lookup_expr='lte', label='cc max')
+class NovelsFilter(CommonFilter):
+	title = django_filters.CharFilter(lookup_expr='icontains', label='Title', 
+	widget=TextInput(attrs={'placeholder': 'search novels...'}))
 
 	class Meta:
 		model = Novel
@@ -323,43 +274,9 @@ class NovelsFilter(django_filters.FilterSet):
 			# 'with_helmet'
 		)
 #
-class LaptopsFilter(django_filters.FilterSet):
-	# common: price - 5, min max, year - min max, desc - contains
-	title = django_filters.CharFilter(lookup_expr='icontains', label='Title')
-	desc = django_filters.CharFilter(lookup_expr='icontains', label='Desc')
-	year = django_filters.NumberFilter()
-	year_min = django_filters.NumberFilter(field_name='year', lookup_expr='gte', label='Start year')
-	year_max = django_filters.NumberFilter(field_name='year', lookup_expr='lte', label='End year')
-
-	#
-	sell_price = django_filters.NumberFilter()
-	sell_price__gt = django_filters.NumberFilter(field_name='sell_price', lookup_expr='gte', label='sell price min')
-	sell_price__lt = django_filters.NumberFilter(field_name='sell_price', lookup_expr='lte', label='sell price max')
-	
-	rent_hour = django_filters.NumberFilter()
-	rent_hour__gt = django_filters.NumberFilter(field_name='rent_hour', lookup_expr='gte', label='rent hour min')
-	rent_hour__lt = django_filters.NumberFilter(field_name='rent_hour', lookup_expr='lte', label='rent hour max')
-	
-	rent_day = django_filters.NumberFilter()
-	rent_day__gt = django_filters.NumberFilter(field_name='rent_day', lookup_expr='gte', label='rent day min')
-	rent_day__lt = django_filters.NumberFilter(field_name='rent_day', lookup_expr='lte', label='rent day max')
-	
-	rent_week = django_filters.NumberFilter()
-	rent_week__gt = django_filters.NumberFilter(field_name='rent_week', lookup_expr='gte', label='rent week min')
-	rent_week__lt = django_filters.NumberFilter(field_name='rent_week', lookup_expr='lte', label='rent week max')
-	
-	rent_month = django_filters.NumberFilter()
-	rent_month__gt = django_filters.NumberFilter(field_name='rent_month', lookup_expr='gte', label='rent month min')
-	rent_month__lt = django_filters.NumberFilter(field_name='rent_month', lookup_expr='lte', label='rent month max')
-	#
-	km = django_filters.NumberFilter()
-	km__gt = django_filters.NumberFilter(field_name='km', lookup_expr='gte', label='km min')
-	km__lt = django_filters.NumberFilter(field_name='km', lookup_expr='lte', label='km max')
-
-	cc = django_filters.NumberFilter()
-	cc__gt = django_filters.NumberFilter(field_name='cc', lookup_expr='gte', label='cc min')
-	cc__lt = django_filters.NumberFilter(field_name='cc', lookup_expr='lte', label='cc max')
-
+class LaptopsFilter(CommonFilter):
+	title = django_filters.CharFilter(lookup_expr='icontains', label='Title', 
+	widget=TextInput(attrs={'placeholder': 'search laptop...'}))
 	class Meta:
 		model = Laptop
 		fields = (
@@ -383,43 +300,9 @@ class LaptopsFilter(django_filters.FilterSet):
 			# 'with_helmet'
 		)
 
-class MousesFilter(django_filters.FilterSet):
-	# common: price - 5, min max, year - min max, desc - contains
-	title = django_filters.CharFilter(lookup_expr='icontains', label='Title')
-	desc = django_filters.CharFilter(lookup_expr='icontains', label='Desc')
-	year = django_filters.NumberFilter()
-	year_min = django_filters.NumberFilter(field_name='year', lookup_expr='gte', label='Start year')
-	year_max = django_filters.NumberFilter(field_name='year', lookup_expr='lte', label='End year')
-
-	#
-	sell_price = django_filters.NumberFilter()
-	sell_price__gt = django_filters.NumberFilter(field_name='sell_price', lookup_expr='gte', label='sell price min')
-	sell_price__lt = django_filters.NumberFilter(field_name='sell_price', lookup_expr='lte', label='sell price max')
-	
-	rent_hour = django_filters.NumberFilter()
-	rent_hour__gt = django_filters.NumberFilter(field_name='rent_hour', lookup_expr='gte', label='rent hour min')
-	rent_hour__lt = django_filters.NumberFilter(field_name='rent_hour', lookup_expr='lte', label='rent hour max')
-	
-	rent_day = django_filters.NumberFilter()
-	rent_day__gt = django_filters.NumberFilter(field_name='rent_day', lookup_expr='gte', label='rent day min')
-	rent_day__lt = django_filters.NumberFilter(field_name='rent_day', lookup_expr='lte', label='rent day max')
-	
-	rent_week = django_filters.NumberFilter()
-	rent_week__gt = django_filters.NumberFilter(field_name='rent_week', lookup_expr='gte', label='rent week min')
-	rent_week__lt = django_filters.NumberFilter(field_name='rent_week', lookup_expr='lte', label='rent week max')
-	
-	rent_month = django_filters.NumberFilter()
-	rent_month__gt = django_filters.NumberFilter(field_name='rent_month', lookup_expr='gte', label='rent month min')
-	rent_month__lt = django_filters.NumberFilter(field_name='rent_month', lookup_expr='lte', label='rent month max')
-	#
-	km = django_filters.NumberFilter()
-	km__gt = django_filters.NumberFilter(field_name='km', lookup_expr='gte', label='km min')
-	km__lt = django_filters.NumberFilter(field_name='km', lookup_expr='lte', label='km max')
-
-	cc = django_filters.NumberFilter()
-	cc__gt = django_filters.NumberFilter(field_name='cc', lookup_expr='gte', label='cc min')
-	cc__lt = django_filters.NumberFilter(field_name='cc', lookup_expr='lte', label='cc max')
-
+class MousesFilter(CommonFilter):
+	title = django_filters.CharFilter(lookup_expr='icontains', label='Title', 
+	widget=TextInput(attrs={'placeholder': 'search mouse...'}))
 	class Meta:
 		model = Mouse
 		fields = (
@@ -443,43 +326,9 @@ class MousesFilter(django_filters.FilterSet):
 			# 'with_helmet'
 		)
 
-class KeyboardsFilter(django_filters.FilterSet):
-	# common: price - 5, min max, year - min max, desc - contains
-	title = django_filters.CharFilter(lookup_expr='icontains', label='Title')
-	desc = django_filters.CharFilter(lookup_expr='icontains', label='Desc')
-	year = django_filters.NumberFilter()
-	year_min = django_filters.NumberFilter(field_name='year', lookup_expr='gte', label='Start year')
-	year_max = django_filters.NumberFilter(field_name='year', lookup_expr='lte', label='End year')
-
-	#
-	sell_price = django_filters.NumberFilter()
-	sell_price__gt = django_filters.NumberFilter(field_name='sell_price', lookup_expr='gte', label='sell price min')
-	sell_price__lt = django_filters.NumberFilter(field_name='sell_price', lookup_expr='lte', label='sell price max')
-	
-	rent_hour = django_filters.NumberFilter()
-	rent_hour__gt = django_filters.NumberFilter(field_name='rent_hour', lookup_expr='gte', label='rent hour min')
-	rent_hour__lt = django_filters.NumberFilter(field_name='rent_hour', lookup_expr='lte', label='rent hour max')
-	
-	rent_day = django_filters.NumberFilter()
-	rent_day__gt = django_filters.NumberFilter(field_name='rent_day', lookup_expr='gte', label='rent day min')
-	rent_day__lt = django_filters.NumberFilter(field_name='rent_day', lookup_expr='lte', label='rent day max')
-	
-	rent_week = django_filters.NumberFilter()
-	rent_week__gt = django_filters.NumberFilter(field_name='rent_week', lookup_expr='gte', label='rent week min')
-	rent_week__lt = django_filters.NumberFilter(field_name='rent_week', lookup_expr='lte', label='rent week max')
-	
-	rent_month = django_filters.NumberFilter()
-	rent_month__gt = django_filters.NumberFilter(field_name='rent_month', lookup_expr='gte', label='rent month min')
-	rent_month__lt = django_filters.NumberFilter(field_name='rent_month', lookup_expr='lte', label='rent month max')
-	#
-	km = django_filters.NumberFilter()
-	km__gt = django_filters.NumberFilter(field_name='km', lookup_expr='gte', label='km min')
-	km__lt = django_filters.NumberFilter(field_name='km', lookup_expr='lte', label='km max')
-
-	cc = django_filters.NumberFilter()
-	cc__gt = django_filters.NumberFilter(field_name='cc', lookup_expr='gte', label='cc min')
-	cc__lt = django_filters.NumberFilter(field_name='cc', lookup_expr='lte', label='cc max')
-
+class KeyboardsFilter(CommonFilter):
+	title = django_filters.CharFilter(lookup_expr='icontains', label='Title', 
+	widget=TextInput(attrs={'placeholder': 'search keyboard...'}))
 	class Meta:
 		model = Keyboard
 		fields = (
@@ -503,43 +352,9 @@ class KeyboardsFilter(django_filters.FilterSet):
 			# 'with_helmet'
 		)
 
-class EnggsFilter(django_filters.FilterSet):
-	# common: price - 5, min max, year - min max, desc - contains
-	title = django_filters.CharFilter(lookup_expr='icontains', label='Title')
-	desc = django_filters.CharFilter(lookup_expr='icontains', label='Desc')
-	year = django_filters.NumberFilter()
-	year_min = django_filters.NumberFilter(field_name='year', lookup_expr='gte', label='Start year')
-	year_max = django_filters.NumberFilter(field_name='year', lookup_expr='lte', label='End year')
-
-	#
-	sell_price = django_filters.NumberFilter()
-	sell_price__gt = django_filters.NumberFilter(field_name='sell_price', lookup_expr='gte', label='sell price min')
-	sell_price__lt = django_filters.NumberFilter(field_name='sell_price', lookup_expr='lte', label='sell price max')
-	
-	rent_hour = django_filters.NumberFilter()
-	rent_hour__gt = django_filters.NumberFilter(field_name='rent_hour', lookup_expr='gte', label='rent hour min')
-	rent_hour__lt = django_filters.NumberFilter(field_name='rent_hour', lookup_expr='lte', label='rent hour max')
-	
-	rent_day = django_filters.NumberFilter()
-	rent_day__gt = django_filters.NumberFilter(field_name='rent_day', lookup_expr='gte', label='rent day min')
-	rent_day__lt = django_filters.NumberFilter(field_name='rent_day', lookup_expr='lte', label='rent day max')
-	
-	rent_week = django_filters.NumberFilter()
-	rent_week__gt = django_filters.NumberFilter(field_name='rent_week', lookup_expr='gte', label='rent week min')
-	rent_week__lt = django_filters.NumberFilter(field_name='rent_week', lookup_expr='lte', label='rent week max')
-	
-	rent_month = django_filters.NumberFilter()
-	rent_month__gt = django_filters.NumberFilter(field_name='rent_month', lookup_expr='gte', label='rent month min')
-	rent_month__lt = django_filters.NumberFilter(field_name='rent_month', lookup_expr='lte', label='rent month max')
-	#
-	km = django_filters.NumberFilter()
-	km__gt = django_filters.NumberFilter(field_name='km', lookup_expr='gte', label='km min')
-	km__lt = django_filters.NumberFilter(field_name='km', lookup_expr='lte', label='km max')
-
-	cc = django_filters.NumberFilter()
-	cc__gt = django_filters.NumberFilter(field_name='cc', lookup_expr='gte', label='cc min')
-	cc__lt = django_filters.NumberFilter(field_name='cc', lookup_expr='lte', label='cc max')
-
+class EnggsFilter(CommonFilter):
+	title = django_filters.CharFilter(lookup_expr='icontains', label='Title', 
+	widget=TextInput(attrs={'placeholder': 'search engg books...'}))
 	class Meta:
 		model = Engg
 		fields = (
@@ -563,42 +378,9 @@ class EnggsFilter(django_filters.FilterSet):
 			# 'with_helmet'
 		)
 
-class SchoolsFilter(django_filters.FilterSet):
-	# common: price - 5, min max, year - min max, desc - contains
-	title = django_filters.CharFilter(lookup_expr='icontains', label='Title')
-	desc = django_filters.CharFilter(lookup_expr='icontains', label='Desc')
-	year = django_filters.NumberFilter()
-	year_min = django_filters.NumberFilter(field_name='year', lookup_expr='gte', label='Start year')
-	year_max = django_filters.NumberFilter(field_name='year', lookup_expr='lte', label='End year')
-
-	#
-	sell_price = django_filters.NumberFilter()
-	sell_price__gt = django_filters.NumberFilter(field_name='sell_price', lookup_expr='gte', label='sell price min')
-	sell_price__lt = django_filters.NumberFilter(field_name='sell_price', lookup_expr='lte', label='sell price max')
-	
-	rent_hour = django_filters.NumberFilter()
-	rent_hour__gt = django_filters.NumberFilter(field_name='rent_hour', lookup_expr='gte', label='rent hour min')
-	rent_hour__lt = django_filters.NumberFilter(field_name='rent_hour', lookup_expr='lte', label='rent hour max')
-	
-	rent_day = django_filters.NumberFilter()
-	rent_day__gt = django_filters.NumberFilter(field_name='rent_day', lookup_expr='gte', label='rent day min')
-	rent_day__lt = django_filters.NumberFilter(field_name='rent_day', lookup_expr='lte', label='rent day max')
-	
-	rent_week = django_filters.NumberFilter()
-	rent_week__gt = django_filters.NumberFilter(field_name='rent_week', lookup_expr='gte', label='rent week min')
-	rent_week__lt = django_filters.NumberFilter(field_name='rent_week', lookup_expr='lte', label='rent week max')
-	
-	rent_month = django_filters.NumberFilter()
-	rent_month__gt = django_filters.NumberFilter(field_name='rent_month', lookup_expr='gte', label='rent month min')
-	rent_month__lt = django_filters.NumberFilter(field_name='rent_month', lookup_expr='lte', label='rent month max')
-	#
-	km = django_filters.NumberFilter()
-	km__gt = django_filters.NumberFilter(field_name='km', lookup_expr='gte', label='km min')
-	km__lt = django_filters.NumberFilter(field_name='km', lookup_expr='lte', label='km max')
-
-	cc = django_filters.NumberFilter()
-	cc__gt = django_filters.NumberFilter(field_name='cc', lookup_expr='gte', label='cc min')
-	cc__lt = django_filters.NumberFilter(field_name='cc', lookup_expr='lte', label='cc max')
+class SchoolsFilter(CommonFilter):
+	title = django_filters.CharFilter(lookup_expr='icontains', label='Title', 
+	widget=TextInput(attrs={'placeholder': 'search school books...'}))
 
 	class Meta:
 		model = School
