@@ -20,6 +20,11 @@ from .models import (Post,
     Laptop, Mouse, Keyboard,
     Novel, Engg, School
     )
+
+# import filters
+from . filters import BikesFilter, ScootysFilter, MobilesFilter
+
+# import ends    
 model_dict = {
     "post" : Post, 
     "bike": Bike, "scooty" : Scooty,  
@@ -37,6 +42,22 @@ def my_get_model_fields(model):
         if f in rf or f.endswith('_ptr'):
             all_f.remove(f)
     return all_f
+
+#get my filter
+def get_model_filter_func(model_name):
+
+    model_filter_dict = {
+    # "post" : Post, 
+    "bike": BikesFilter, "scooty" : ScootysFilter,  
+    # "mobile" : Mobile, 
+    "mobilecharger" : MobilesFilter,
+    # "laptop" : Laptop,  "mouse" : Mouse, "keyboard" : Keyboard,
+    # "novel" : Novel, "engg":Engg, "school":School
+    }
+
+    return model_filter_dict[model_name]
+
+
 
 """subcat view"""
 #ListView
@@ -59,7 +80,9 @@ class SubcatListView(ListView):
     def get_context_data(self, **kwargs):
         """override "get_context_data" to pass model_name to subcat_list.html"""
         context = super().get_context_data(**kwargs)
-        context['class_name'] = self.model._meta.model_name.lower() # kwargs.get('model', None) 
+        context['class_name'] = self.model._meta.model_name.lower() # kwargs.get('model', None)
+        ModelFilter = get_model_filter_func(self.model._meta.model_name.lower())
+        context['filter'] =  ModelFilter(self.request.GET, queryset=self.get_queryset())
         return context
 
 #DetailView
@@ -81,6 +104,8 @@ class SubcatDetailView(DetailView):
         """override "get_context_data" to pass model_name to subcat_list.html"""
         context = super().get_context_data(**kwargs)
         context['class_name'] = self.model._meta.model_name.lower() # kwargs.get('model', None) 
+        ModelFilter = get_model_filter_func(self.model._meta.model_name.lower())
+        context['filter'] =  ModelFilter(self.request.GET, queryset=self.get_queryset())
         return context
 
 #CreateView
@@ -104,6 +129,14 @@ class SubcatCreateView(LoginRequiredMixin, CreateView):
         """overriding "get_form_class" func to get fields for model passed in URL"""
         self.fields = my_get_model_fields(model_dict[self.model._meta.model_name.lower()])
         return super(SubcatCreateView, self).get_form_class()
+
+    # def get_context_data(self, **kwargs):
+    #     """override "get_context_data" to pass model_name to subcat_list.html"""
+    #     context = super().get_context_data(**kwargs)
+    #     context['class_name'] = self.model._meta.model_name.lower() # kwargs.get('model', None) 
+    #     ModelFilter = get_model_filter_func(self.model._meta.model_name.lower())
+    #     context['filter'] =  ModelFilter(self.request.GET, queryset=self.get_queryset())
+    #     return context
 
 #UpdateView
 class SubcatUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):

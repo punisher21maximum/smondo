@@ -1,15 +1,12 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% load myfilters %}
-{% load google_analytics_tags %}
-<div style="display:none">
-    <img src="{% google_analytics %}" width="0" height="0" />
-</div>
+
 
 {% block content %}
 
   <div class="row px-5" >
-    {% for post in posts %}
+    {% for post in filter.qs %}
 <!-- card -->
  
       <div class="card m-2 rounded-0 card_shadow " style="width: 18rem; ">
@@ -107,3 +104,6 @@
 <!-- pagination end -->    
 {% endblock content %}
  
+{% block filters %}
+    {% include "blog/filters.html" %}
+{% endblock filters %}

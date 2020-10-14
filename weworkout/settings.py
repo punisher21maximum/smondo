@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
 
+    'bootstrapform',
     'crispy_forms',
     'django_filters',
     'admin_auto_filters',#search in dropdown
