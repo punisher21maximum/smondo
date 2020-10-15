@@ -1,40 +1,40 @@
 {% load crispy_forms_tags %}
-<div class="content-section p-3"   style="  font-weight: 500; font-size: 13px;  ">
+<div class="content-section px-3 py-2 mr-5"   style="  font-weight: 500; font-size: 13px;  ">
  
   <form method="GET" class="text-dark">
     <!-- {{ filter.form|crispy }} -->
     <!-- row 1  -->
     <div class="form-row p-0 mt-0">
-      <div class="form-group col-md-10 p-0 mb-0">
+      <div class="form-group col-md-10 p-0 mb-1">
         {{ filter.form.title }} 
       </div>
-      <div class="form-group col-md-2 py-0 ml-0">
+      <div class="form-group col-md-2 py-0 ml-0 mb-1">
         <button type="submit" class="btn btn-outline-dark btn-sm py-0 my-0" style="height:35px;">
           <p class="text-center" ><i class="fa fa-search" aria-hidden="true"></i></p>  
         </button>
       </div>
     </div>
     <!-- row 2  -->
-    <div class="form-row p-0 mt-1">
-      <div class="form-group col-md-2  py-0  my-0">
+    <div class="form-row p-0 mt-0">
+      <div class="form-group col-md-4  py-0  my-0">
         {{"Year"}}
       </div>
-      <div class="form-group col-md-4  py-0 my-0">
+      <div class="form-group col-md-4  py-0 my-0 " >
         {{ filter.form.year_min }}
       </div>
       <div class="form-group col-md-4 py-0 my-0">
         {{ filter.form.year_max  }}
       </div>
-      <div class="form-group col-md-2  py-0 my-0">
+      <!-- <div class="form-group col-md-2  py-0 my-0">
         <button type="submit" class="btn btn-outline-dark btn-sm py-0 my-0" style="height:35px;">
           <p class="text-center" >Go</p>  
         </button>
-      </div>
+      </div> -->
     </div>
     <!-- row 3 : sell  -->
     <div class="form-row py-0 mt-1">
-      <div class="form-group col-md-2  py-0  my-0">
-        {{"Buy"}}
+      <div class="form-group col-md-4  py-0  my-0">
+        {{"Buy Price"}}
       </div>
       <div class="form-group col-md-4  py-0  my-0">
          {{ filter.form.sell_price__gt }}  
@@ -42,16 +42,16 @@
       <div class="form-group col-md-4 py-0  my-0">
          {{ filter.form.sell_price__lt }}  
       </div>
-      <div class="form-group col-md-2  py-0  my-0">
+      <!-- <div class="form-group col-md-2  py-0  my-0">
         <button type="submit" class="btn btn-outline-dark btn-sm py-0 my-0" style="height:35px;">
           <p class="text-center" >Go</p>  
         </button>
-      </div>
+      </div> -->
     </div>
     
     <!-- row 4 : hour  -->
     <div class="form-row py-0 mt-1">
-      <div class="form-group col-md-2  py-0 my-0">
+      <div class="form-group col-md-4  py-0 my-0">
         {{"Rent Hour"}}
       </div>
       <div class="form-group col-md-4  py-0 my-0">
@@ -60,15 +60,15 @@
       <div class="form-group col-md-4 py-0 my-0">
          {{ filter.form.rent_hour__lt }}  
       </div>
-      <div class="form-group col-md-2  py-0 my-0">
+      <!-- <div class="form-group col-md-2  py-0 my-0">
         <button type="submit" class="btn btn-outline-dark btn-sm py-0 my-0" style="height:35px;">
           <p class="text-center">Go</p>  
         </button>
-      </div>
+      </div> -->
     </div>
     <!-- row 5 : day  -->
     <div class="form-row p-0 mt-1">
-      <div class="form-group col-md-2  py-0  my-0">
+      <div class="form-group col-md-4  py-0  my-0">
         {{"Rent day"}}
       </div>
       <div class="form-group col-md-4  py-0  my-0">
@@ -77,15 +77,15 @@
       <div class="form-group col-md-4 py-0  my-0">
          {{ filter.form.rent_day__lt }}  
       </div>
-      <div class="form-group col-md-2  py-0  my-0">
+      <!-- <div class="form-group col-md-2  py-0  my-0">
         <button type="submit" class="btn btn-outline-dark btn-sm" style="height:35px;">
           <p class="text-center" >Go</p>  
         </button>
-      </div>
+      </div> -->
     </div>
     <!-- row 6 : week  -->
     <div class="form-row p-0 mt-1">
-      <div class="form-group col-md-2  py-0  my-0">
+      <div class="form-group col-md-4  py-0  my-0">
         {{"Rent Week"}}
       </div>
       <div class="form-group col-md-4  py-0  my-0">
@@ -94,15 +94,15 @@
       <div class="form-group col-md-4 py-0  my-0">
          {{ filter.form.rent_week__lt }}  
       </div>
-      <div class="form-group col-md-2  py-0  my-0">
+      <!-- <div class="form-group col-md-2  py-0  my-0">
         <button type="submit" class="btn btn-outline-dark btn-sm py-0  my-0" style="height:35px;">
           <p class="text-center" >Go</p>  
         </button>
-      </div>
+      </div> -->
     </div>
     <!-- row 7 : month  -->
     <div class="form-row p-0 mt-1">
-      <div class="form-group col-md-2  py-0  my-0">
+      <div class="form-group col-md-4  py-0  my-0">
         {{"Rent Month"}}
       </div>
       <div class="form-group col-md-4  py-0  my-0">
@@ -111,17 +111,19 @@
       <div class="form-group col-md-4 py-0  my-0">
          {{ filter.form.rent_month__lt }}  
       </div>
-      <div class="form-group col-md-2  py-0  my-0">
+      <!-- <div class="form-group col-md-2  py-0  my-0">
         <button type="submit" class="btn btn-outline-dark btn-sm py-0  my-0" style="height:35px;">
           <p class="text-center" >Go</p>  
         </button>
-      </div>
+      </div> -->
     </div>
+    <div style="text-align: center;">
+      <button type="submit" class="btn btn-outline-dark mt-1 py-1 "   >
+      Search
+    </button>
+    </div>
+    
 
-<!--       
-    <button type="submit" class="text-center button_engg btn-block  mt-1">
-      <p class="text-center " >search  
-    </button> -->
   </form>
             
   <!-- <ul class="list-group ">

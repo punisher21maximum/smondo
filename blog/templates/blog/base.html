@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'blog/bootstrap-social/bootstrap-social.css' %}">
     
     <link rel="stylesheet" type="text/css" href="{% static 'blog/font-awesome/css/font-awesome.min.css' %}">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     {% if title %}
         <title>Cmax</title>
     {% else %}
@@ -26,16 +26,20 @@
 <!-- background-color:#563d7c; -->
 <body >
     <header class="site-header intro">
-      <nav class="navbar navbar-expand-md navbar-dark  fixed-top py-3 px-4"
-        style="background-color:#563d7c;font-weight:900;">
+      <nav class="navbar navbar-expand-md    fixed-top py-2 px-5 text-white"
+        style="background-color:#563d7c; font-weight:600; font-size: 16px;">
           <!-- <div class="container"> -->
-         
-              <a class="navbar-brand mr-4" href="#">ConviMax</a>
+               
+              <a class="navbar-brand mr-4 text-white" href="#"><b>CONVIMAX</b></a>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               
               <!-- dropdown -->
               <form class="form-inline my-2 my-lg-0 ">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search book, car, bike and more" aria-label="Search"
-                  style="width:300px">
-                  <button class="btn btn-outline-white my-2 my-sm-0" type="submit">Search</button>
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search Book, Car, Bike and More" aria-label="Search"
+                  style="width:500px">
+                  <button class="btn btn-outline-white my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
               </form>
               
               <!-- dropdown end -->
@@ -45,53 +49,58 @@
                 </div>
                 
                 <!-- Navbar Right Side -->
-                <div class="navbar-nav">
+                <div class="navbar-nav text-white">
                   {% if user.is_authenticated %}
-                  <a class="nav-item nav-link" href="#">{{ user.profile.first_name }}
-                    {{ user.profile.last_name }}</a>
-                    <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
-                    <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                    <a class="nav-item nav-link text-white" href="#">
+                      <i class="fa fa-plus"></i> Sell 
+                    </a>
+                    <a class="nav-item nav-link text-white" href="#">
+                      My Posts <i class="fa fa-sticky-note"></i>
+                    </a>
+                    <a class="nav-item nav-link text-white" href="#">
+                      Starred <i class="fa fa-star"></i>
+                    </a>
+                    <!-- <a class="nav-item nav-link" href="#">{{ user.profile.first_name }}</a> -->
+                    <a class="nav-item nav-link text-white" href="{% url 'profile' %}">
+                      Profile <i class="fa fa-user"></i>
+                    </a>
+                    <a class="nav-item nav-link text-white" href="{% url 'logout' %}">
+                      Logout <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    </a>
                   {% else %}
-                    <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
-                    <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                    <a class="nav-item nav-link text-white" href="{% url 'login' %}">Login</a>
+                    <a class="nav-item nav-link text-white" href="{% url 'register' %}">Register</a>
                   {% endif %}
                 </div>
               </div>
 
           <!-- </div> -->
-        <br>
-
-
+        
       </nav>
-
-      <nav class="navbar navbar-expand-md navbar-dark  fixed-top py-0 px-4"
-        style="background-color:#563d7c;font-weight:900; margin-top: 65px;">
+       
+      <nav class="navbar navbar-expand-md navbar-dark py-0 px-5 fixed-top"
+        style="background-color:#563d7c; font-weight: 500; font-size: 15px; margin-top:50px;">
           <!-- <div class="container"> -->
               <!-- dropdown -->
               <button class="btn btn-white my-2 text-white" style="background-color:#563d7c" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 <b>{{"All categories"|upper}}  <i class="fa fa-caret-down"></i></b>
               </button>
-              
               <!-- dropdown end -->
               <div class="navbar-nav mr-auto text-white ml-3">
-                <a class="nav-item nav-link mx-3" href="{% url 'subcat-list' model='bike' %}">Bikes</a>
-                <a class="nav-item nav-link mx-3" href="{% url 'subcat-list' model='scooty' %}">Scootys</a>
-                <a class="nav-item nav-link mx-3" href="{% url 'subcat-list' model='novel' %}">Novels</a>
-                <a class="nav-item nav-link mx-3" href="{% url 'subcat-list' model='mobile' %}">Mobiles</a>
-                <a class="nav-item nav-link mx-3" href="{% url 'subcat-list' model='mouse' %}">Mouses</a>  
-                <a class="nav-item nav-link mx-3" href="{% url 'subcat-list' model='keyboard' %}">Keyboards</a>  
-                <a class="nav-item nav-link mx-3" href="{% url 'subcat-list' model='laptop' %}">Laptops</a>  
-                <a class="nav-item nav-link mx-3" href="{% url 'subcat-list' model='mobilecharger' %}">Mobile Chargers</a>  
+                <a class="nav-item nav-link mx-3 text-white" href="{% url 'subcat-list' model='bike' %}">Bikes <i class="fa fa-motorcycle"> </i> </a>
+                <a class="nav-item nav-link mx-3 text-white" href="{% url 'subcat-list' model='scooty' %}">Scootys <i class="fa fa-motorcycle"> </i></a>
+                <a class="nav-item nav-link mx-3 text-white" href="{% url 'subcat-list' model='novel' %}">Novels <i class="fa fa-book"> </i></a>
+                <a class="nav-item nav-link mx-3 text-white" href="{% url 'subcat-list' model='mobile' %}">Mobiles <i class="fa fa-mobile"> </i></a>
+                <a class="nav-item nav-link mx-3 text-white" href="{% url 'subcat-list' model='mouse' %}">Mouses <i class="fas fa-mouse"></i></a>  
+                <a class="nav-item nav-link mx-3 text-white" href="{% url 'subcat-list' model='keyboard' %}">Keyboards <i class="far fa-keyboard"></i></a>  
+                <a class="nav-item nav-link mx-3 text-white" href="{% url 'subcat-list' model='laptop' %}">Laptops <i class="fa fa-laptop"> </i></a>  
+                <a class="nav-item nav-link mx-3 text-white" href="{% url 'subcat-list' model='mobilecharger' %}">Mobile Chargers <i class="fa fa-charger"> </i></a>  
               </div>
-
           <!-- </div> -->
-        <br>
-
-
       </nav>
 <!-- all cat -->
-<div class="collapse "  id="collapseExample" style="margin-top:150px;" >
-  <div class="card card-body" style="background-color:#eae6f0;">
+<div class="collapse "  id="collapseExample" style="margin-top:0px; font-weight: 800;" >
+  <div class="card card-body" style="background-color:white; color:rgb(56, 11, 56);">
     <div class="row">
       <div class="col-md">
         <a class="dropdown-item" href="#"><b>Books</b></a>
@@ -121,10 +130,11 @@
 <!-- all cat end -->
     </header>
 <main role="main" class="container-fluid">
-      <div class="row">
-        <div class="col-md-12" style="margin-bottom:100p;">
+      <div class="row " style="margin-bottom:100px;  ">
+         
           <!-- jumbotron -->
-          <div id="carouselExampleIndicators" class="carousel slide mb-3" data-ride="carousel" style="color:#6b4c9a">
+          <div id="carouselExampleIndicators" class="carousel slide mb-3   mt-3" data-ride="carousel" 
+          style="color:#6b4c9a; width:100%; ">
           <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -132,7 +142,7 @@
           </ol>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img class="d-block w-100" src="{% static 'blog/carousel_img/bk.jpeg' %}" height="400px;" alt="First slide">
+              <img class="d-block w-100" src="{% static 'blog/carousel_img/bk.jpeg' %}" height="300px;" alt="First slide">
                   <div class="carousel-caption d-none d-md-block">
                     <h5 class="bg-white p-5">
                       <i class="fa fa-book"></i>
@@ -141,7 +151,7 @@
                   </div>
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="{% static 'blog/carousel_img/bk1.jpeg' %}" height="400px;" alt="Second slide">
+              <img class="d-block w-100" src="{% static 'blog/carousel_img/bk1.jpeg' %}" height="300px;" alt="Second slide">
                   <div class="carousel-caption d-none d-md-block">
                     <h5 class="bg-white p-5">
                       <i class="fa fa-sticky-note"></i> <i class="fa fa-question"></i>
@@ -149,7 +159,7 @@
                   </div>
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="{% static 'blog/carousel_img/bk3.jpeg' %}" height="400px;" alt="Third slide">
+              <img class="d-block w-100" src="{% static 'blog/carousel_img/bk3.jpeg' %}" height="300px;" alt="Third slide">
                   <div class="carousel-caption d-none d-md-block">
                     <h5 class="bg-white p-5">
                       <b class="fa fa-code"></b> 
@@ -165,8 +175,9 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </a>
-        </div>
+          </div>
           <!-- jumboron end -->
+          
           <!-- main -->
           <div class="row"> 
             <div class="col-md-9">
@@ -184,7 +195,7 @@
         
             <!-- main end -->
             <!-- sidebar  -->
-            <div class="col-md-3" >
+            <div class="col-md-3 "  >
 
               {% block filters %}
               {% endblock %}
@@ -192,7 +203,8 @@
             </div>  
             <!-- sidebar end -->
           </div>
-          </div>
+          <!-- main end -->
+          
           
       </div>
     </main>

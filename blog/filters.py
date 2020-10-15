@@ -12,12 +12,18 @@ from django.forms.widgets import TextInput
 class CommonFilter(django_filters.FilterSet):
 	# common: price - 5, min max, year - min max, desc - contains
 	title = django_filters.CharFilter(lookup_expr='icontains', label='Title', 
-	widget=TextInput(attrs={'placeholder': 'search bikes...'}))
+	widget=TextInput(attrs={
+		'placeholder': 'search bikes...', 
+		'size':'10000'
+		}))
 	desc = django_filters.CharFilter(lookup_expr='icontains', label='Desc', 
 	widget=TextInput(attrs={'placeholder': 'search description...'}))
 	year = django_filters.NumberFilter()
 	year_min = django_filters.NumberFilter(field_name='year', lookup_expr='gte', label='Start year', 
-	widget=TextInput(attrs={'placeholder': 'start'}))
+	widget=TextInput(attrs={
+		'placeholder': 'start', 
+		'size': '40'
+		}))
 	year_max = django_filters.NumberFilter(field_name='year', lookup_expr='lte', label='End year', 
 	widget=TextInput(attrs={'placeholder': 'end'}))
 

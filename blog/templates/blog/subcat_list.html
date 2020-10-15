@@ -5,11 +5,11 @@
 
 {% block content %}
 
-  <div class="row px-5" >
+  <div class="row pl-5 pb-0" >
     {% for post in filter.qs %}
 <!-- card -->
  
-      <div class="card m-2 rounded-0 card_shadow " style="width: 18rem; ">
+      <div class="card m-2 rounded-0 card_shadow mx-4 pb-0" style="width: 17rem; ">
         <!-- images -->
         {% if class_name  == "bike" %}
           <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='bike' %}"> 
@@ -32,21 +32,21 @@
         {% elif class_name  == "mobilecharger" %}
         <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='mobilecharger' %}"> 
         {% endif %} 
-          <img class="d-block w-100" src="{{ post.img1.url }}" height="250px;" alt="First slide">
+          <img class="d-block w-100" src="{{ post.img1.url }}" height="180px;" alt="First slide">
         </a>
 
         <!-- images end -->
-        <div class="p-3">
+        <div class="p-3 " style="font-weight: 500;">
 
             <h5>Rs {{post.sell_price}}/-</h5> 
             <!-- <small>{{post.date_posted|date:"M t, Y"}}</small> -->
             <h7>{{post.title}}</h7>
-            <small> - {{post.desc|truncatechars:50}}</small>
+            <small> - {{post.desc|truncatechars:15}}</small>
 
             <!-- price  -->
-            <table class="table table-hover mb-0" style="font-size: 12px;">
+            <table class="table table-sm table-hover mb-0 mt-1" style="font-size: 12px; ;">
               <tbody>
-                <tr>
+                <tr class="py-0">
                   <th>Month</th>
                   <td>{{post.rent_month}}/-</td>
                   <th>Week</th>
@@ -83,9 +83,11 @@
                 {% include "blog/mouse_list2.html" %}
             {% endif %}          
             <!-- details Unique end -->
-
+             
+            <div class="m-0">
             <small>{{post.author.profile.phone_number}}, {{ post.author.profile.society }},
                 {{ post.author.profile.bldg }}, {{ post.author.profile.floor }}0{{ post.author.profile.flat_no }}</small>
+            </div>
         </div>
         
             
