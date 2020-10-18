@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django_filters',
     'admin_auto_filters',#search in dropdown
     'google_analytics',#google
+    'widget_tweaks', #text field size
 
     'django.contrib.admin',
     'django.contrib.auth',

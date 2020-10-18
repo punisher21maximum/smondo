@@ -1,10 +1,11 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
+{% load widget_tweaks %}
  
 {% block update %}
 <div class="container-fluid ml-4" style="justify-content: center; font-weight: 600; font-size: 14px;">
     <div>
-        <h1 class="border-bottom p-3 mx-5 text">New  Post</h1> 
+        <h3 class="  p-1 mx-4 ">New  Post</h3> 
     </div>
     <!-- <div class="row" style="font-weight: 600; font-size: 13px;"> -->
         <!-- <div class="col-2"></div> -->
@@ -24,7 +25,7 @@
                                 {% if forloop.counter0 <= 2 %}
                                 <div class="row py-1" >
                                     <div class="col-4">{{ field.label}} </div>
-                                    <div class="col-6" style="text-align: right; max-width: fit-content; ">{{ field}}</div>
+                                    <div class="col-6" style="text-align: right; max-width: fit-content; ">{{ field|attr:"rows:5"}}</div>
                                     <div class="col-2"></div>
                                 </div>
                                 {% endif %}
@@ -39,8 +40,8 @@
                                 {% if forloop.counter0 >= 3 and forloop.counter0 <= 7 %}
                                 <div class="row py-1" >
                                     <div class="col-5">{{ field.label}} </div>
-                                    <div class="col-6 " style="text-align: right;">{{ field}}</div>
-                                    <div class="col-1"></div>
+                                    <div class="col-6 "  >{{ field|attr:"cols:20"}}</div>
+                                    <!-- <div class="col-1"></div> -->
                                 </div>
                                 {% endif %}
                             {% endfor %}
@@ -78,8 +79,8 @@
                     </div>
 
                 </fieldset>
-                <div class="form-group">
-                    <button class="btn btn-outline-secondary btn-blk" type="submit">Post</button>
+                <div class="form-group ml-2">
+                    <button class="btn btn-outline-secondary btn-blk" style="width: 150px;" type="submit">Post</button>
                 </div>
             </form>
         </div>
