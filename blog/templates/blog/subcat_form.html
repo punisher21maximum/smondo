@@ -7,8 +7,7 @@
     <div>
         <h3 class="  p-1 mx-4 ">New  Post</h3> 
     </div>
-    <!-- <div class="row" style="font-weight: 600; font-size: 13px;"> -->
-        <!-- <div class="col-2"></div> -->
+    
         <div class="  content-section text-dark    my-2"  >
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -84,7 +83,96 @@
                 </div>
             </form>
         </div>
-        <!-- <div class="col-1"></div> -->
-    <!-- </div> -->
+   
+</div>
+<!-- 2nd  -->
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
+      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
+      <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
+    </div>
+  </nav>
+<div class="tab-content container-fluid ml-4" id="nav-tabContent" style="justify-content: center; font-weight: 600; font-size: 14px;">
+    <div>
+        <h3 class="  p-1 mx-4 ">New  Post</h3> 
+    </div>
+    
+        <div class="  content-section text-dark    my-2"  >
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset class="">
+                    <!-- <legend class="border-bottom mb-4">New  Post</legend> -->
+
+                    <div class="form-row">
+                        <div class="form-group col-3 px-3"> 
+                            <button type="button" class="mb-2 btn btn-secondary btn-block" data-toggle="tooltip" data-placement="top" title="In this column - all field are compulsory">
+                                <div>Mandatory to fill</div> 
+                            </button>
+                            
+                            {% for field in form %}
+                                {% if forloop.counter0 <= 2 %}
+                                <div class="row py-1 tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" >
+                                    <div class="col-4">{{ field.label}} </div>
+                                    <div class="col-6" style="text-align: right; max-width: fit-content; ">{{ field|attr:"rows:5"}}</div>
+                                    <div class="col-2"></div>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col-3 px-3 py-0 tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"> 
+                            <button type="button" class="mb-2 btn btn-secondary btn-block" data-toggle="tooltip" data-placement="top" title="In this column - fill at least one field">
+                                <div>Fill at least one</div> 
+                            </button>
+                        
+                            {% for field in form %}
+                                {% if forloop.counter0 >= 3 and forloop.counter0 <= 7 %}
+                                <div class="row py-1" >
+                                    <div class="col-5">{{ field.label}} </div>
+                                    <div class="col-6 "  >{{ field|attr:"cols:20"}}</div>
+                                    <!-- <div class="col-1"></div> -->
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col-3 px-3 tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">  
+                            <button type="button" class="mb-2 btn btn-secondary btn-block" data-toggle="tooltip" data-placement="top" title="In this column - all field are optional">
+                                <div>Optional</div> 
+                            </button>      
+                            
+                            {% for field in form %}
+                                {% if forloop.counter0 >= 8 and forloop.counter0 <= 11 %}
+                                <div class="row py-1" >
+                                    <div class="col-4">{{ field.label}} </div>
+                                    <div class="col-6 " style="text-align: right; ">{{field}}</div>
+                                    <div class="col-2"></div>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col-3 px-3"> 
+                            <button type="button" class="mb-2 btn btn-secondary btn-block" data-toggle="tooltip" data-placement="top" title="In this column - all field are optional">
+                                <div>Optional</div> 
+                            </button>
+                        
+                            {% for field in form %}
+                                {% if forloop.counter0 >= 12 %}
+                                <div class="row py-1" >
+                                    <div class="col-5">{{ field.label}} </div>
+                                    <div class="col-6 mx-0" style="text-align: right;">{{field}}</div>
+                                    <div class="col-1"></div>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>       
+                    </div>
+
+                </fieldset>
+                <div class="form-group ml-2">
+                    <button class="btn btn-outline-secondary btn-blk" style="width: 150px;" type="submit">Post</button>
+                </div>
+            </form>
+        </div>
+   
 </div>
 {% endblock update %}
