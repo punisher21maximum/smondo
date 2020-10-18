@@ -14,20 +14,20 @@ class Post(models.Model):
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 	#common fields
 	title = models.CharField(max_length=100, help_text='like pulsar, duke')
-	desc = models.TextField()
-	year = models.PositiveIntegerField(blank=True, null=True, 
+	desc = models.TextField("Description")
+	year = models.PositiveIntegerField("Year", blank=True, null=True, 
 		help_text='bought year')
 	#pricing
 	sell_price = models.PositiveIntegerField(blank=True, null=True)
-	rent_hour = models.PositiveIntegerField(blank=True, null=True)
-	rent_day = models.PositiveIntegerField(blank=True, null=True)
-	rent_week = models.PositiveIntegerField(blank=True, null=True)
-	rent_month = models.PositiveIntegerField(blank=True, null=True)
+	rent_hour = models.PositiveIntegerField("Rent price per hour", blank=True, null=True)
+	rent_day = models.PositiveIntegerField("Rent price per day", blank=True, null=True)
+	rent_week = models.PositiveIntegerField("Rent price per week", blank=True, null=True)
+	rent_month = models.PositiveIntegerField("Rent price per month", blank=True, null=True)
 	#images
-	img1 = models.ImageField(upload_to='post_images', default='default.jpg')
-	img2 = models.ImageField(upload_to='post_images', default='default.jpg')
-	img3 = models.ImageField(upload_to='post_images', default='default.jpg')
-	img4 = models.ImageField(upload_to='post_images', default='default.jpg')
+	img1 = models.ImageField("image 1", upload_to='post_images', default='default.jpg')
+	img2 = models.ImageField("image 2",upload_to='post_images', default='default.jpg')
+	img3 = models.ImageField("image 3",upload_to='post_images', default='default.jpg')
+	img4 = models.ImageField("image 4",upload_to='post_images', default='default.jpg')
 	#auto generated field
 	date_posted = models.DateTimeField(default=timezone.now)
 
@@ -42,9 +42,9 @@ class TwoWheeler(Post):
 	#Bikes unique fields
 	# sub_cat_CHOICES = [('Bikes', 'Bikes'), ('Scooty', 'Scooty'), ('Scooter', 'Scooter'),
 	# ('Bicycle', 'Bicycle'), ('Other', 'Other')]
-	km = models.PositiveIntegerField(blank=True, null=True,  
+	km = models.PositiveIntegerField("KM", blank=True, null=True,  
 		help_text='KM driven')
-	cc = models.PositiveIntegerField(blank=True, null=True,  help_text='CC')
+	cc = models.PositiveIntegerField("CC", blank=True, null=True,  help_text='CC')
 	
 
 class Bike(TwoWheeler):

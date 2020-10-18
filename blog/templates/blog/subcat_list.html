@@ -5,7 +5,7 @@
 
 {% block content %}
 
-  <div class="row pl-5 pb-0" >
+  <div class="row pl-5   pb-0" >
     {% for post in filter.qs %}
 <!-- card -->
  
@@ -37,12 +37,18 @@
 
         <!-- images end -->
         <div class="p-3 " style="font-weight: 500;">
-
-            <h5>Rs {{post.sell_price}}/-</h5> 
+            <div class="row">
+              <div class="col-6" style="font-size: 15px;">
+                <button type="button" class="btn btn-secondary btn-sm py-1" data-toggle="tooltip" data-placement="right" title="{{post.desc|truncatechars:100}}">
+                  {{post.title|truncatechars:12}}
+                </button> 
+              </div>
+              <div class="col-6" style="font-size: 18px;  text-align: right;">Rs {{post.sell_price}}/-</div> 
+            </div>
             <!-- <small>{{post.date_posted|date:"M t, Y"}}</small> -->
-            <h7>{{post.title}}</h7>
-            <small> - {{post.desc|truncatechars:15}}</small>
-
+            <!-- <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="{{post.desc}}">Click to toggle popover</button> -->
+            <!-- {{post.desc|truncatechars:15}} -->
+            
             <!-- price  -->
             <table class="table table-sm table-hover mb-0 mt-1" style="font-size: 12px; ;">
               <tbody>
@@ -83,11 +89,16 @@
                 {% include "blog/mouse_list2.html" %}
             {% endif %}          
             <!-- details Unique end -->
-             
-            <div class="m-0">
-            <small>{{post.author.profile.phone_number}}, {{ post.author.profile.society }},
-                {{ post.author.profile.bldg }}, {{ post.author.profile.floor }}0{{ post.author.profile.flat_no }}</small>
-            </div>
+            <!-- more  -->
+            
+              {% include "blog/link_to_detail.html" %}
+            
+            <!-- more end -->
+            <!-- contact details  -->
+              <small class="text-justify pl-1">{{post.author.profile.phone_number}}, {{ post.author.profile.society }},
+                {{ post.author.profile.bldg }}-{{ post.author.profile.floor }}0{{ post.author.profile.flat_no }}
+              </small>
+            <!-- contact details end -->
         </div>
         
             
@@ -109,3 +120,4 @@
 {% block filters %}
     {% include "blog/filters.html" %}
 {% endblock filters %}
+

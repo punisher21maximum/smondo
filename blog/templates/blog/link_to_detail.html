@@ -1,0 +1,25 @@
+        {% if class_name  == "bike" %}
+          <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='bike' %}"> 
+        {% elif class_name  == "scooty" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='scooty' %}"> 
+        {% elif class_name  == "mobile" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='mobile' %}"> 
+        {% elif class_name  == "novel" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='novel' %}">
+        {% elif class_name  == "engg" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='engg' %}">  
+        {% elif class_name  == "school" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='school' %}">  
+        {% elif class_name  == "laptop" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='laptop' %}">  
+        {% elif class_name  == "mouse" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='mouse' %}">  
+        {% elif class_name  == "keyboard" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='keyboard' %}"> 
+        {% elif class_name  == "mobilecharger" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='mobilecharger' %}"> 
+        {% endif %} 
+          <button type="button" class="btn btn-secondary btn-sm btn-block py-0"> 
+            More
+          </button>
+        </a>

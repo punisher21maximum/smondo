@@ -103,9 +103,7 @@ a.article-title:hover {
   font-size: 30px;
 }
 
-.side_bar_l {
  
-}
 
 .side_bar_l_c {
   color : #6b4c9a;
@@ -169,7 +167,7 @@ a.nounderline{
   box-shadow: -4px 15px 18px -13px rgba(0,0,0,1);
   }
 
-.card_shadow : hover {
+.card_shadow:hover {
   -webkit-box-shadow: 0px 14px 28px -12px rgba(0,0,0,1);
   -moz-box-shadow: 0px 14px 28px -12px rgba(0,0,0,1);
   box-shadow: 0px 14px 28px -12px rgba(0,0,0,1);
