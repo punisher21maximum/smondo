@@ -5,8 +5,8 @@
     <img src="{% google_analytics %}" width="0" height="0" />
 </div>
 {% block content %}
-    <div class="container " >
-      <div class="offset-4 col-8 bg-dark text-white p-4 mb-3">
+    <div class="content-section container" >
+      <div class="p-4 mb-3">
       <div class="media">
         <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
         <div class="media-body">
@@ -24,6 +24,7 @@
           {% csrf_token %}
           <fieldset class="form-group">
               <legend class="border-bottom mb-4">Profile Info</legend>
+              {{ u_form.first_name }}
               {{ u_form|crispy }}
               {{ p_form|crispy }}
           </fieldset>
