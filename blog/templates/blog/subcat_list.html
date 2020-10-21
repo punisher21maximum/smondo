@@ -9,7 +9,7 @@
     {% for post in filter.qs %}
 <!-- card -->
  
-      <div class="card  rounded-0 card_shadow mx-0 pb-0" style="width: 15rem; ">
+      <div class="card  rounded-0 card_shadow mx-0 pb-0" style="width: 16rem; ">
         <!-- images -->
         {% if class_name  == "bike" %}
           <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='bike' %}"> 

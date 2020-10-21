@@ -184,7 +184,7 @@
               {% block update %}
               {% endblock %} 
             </div>
-            <div class="col-md-9">
+            <div class="col col-80" width="80%">
               {% if messages %}
                 {% for message in messages %}
                   <div class="alert alert-{{ message.tags }}">
@@ -199,7 +199,7 @@
         
             <!-- main end -->
             <!-- sidebar  -->
-            <div class="col-md-3 "  >
+            <div class="col col-20"  width="20%">
 
               {% block filters %}
               {% endblock %}
