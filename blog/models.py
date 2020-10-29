@@ -37,16 +37,127 @@ class Post(models.Model):
 	def __str__(self):
 		return self.title
 
-"""Two Wheeler"""
-class TwoWheeler(Post):
+"""Stationery"""
+class Stationery(Post):
+
+	def get_absolute_url(self):
+		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'Stationery'})
+
+	def __str__(self):
+		return 'Stationery'
+
+"""Electronics"""
+class Electronics(Post):
+
+	def get_absolute_url(self):
+		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'Electronics'})
+
+	def __str__(self):
+		return 'Electronics'
+
+"""Furniture"""
+class Furniture(Post):
+	pass 
+
+	def get_absolute_url(self):
+		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'Furniture'})
+
+	def __str__(self):
+		return 'Furniture'
+
+"""Vehicle"""
+class Vehicle(Post):
+	pass 
+
+	def get_absolute_url(self):
+		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'Vehicle'})
+
+	def __str__(self):
+		return 'Vehicle'
+
+"""HouseHold"""
+class HouseHold(Post): 
+
+	def get_absolute_url(self):
+		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'HouseHold'})
+
+	def __str__(self):
+		return 'HouseHold'
+
+"""Other"""
+class Other(Post): 
+
+	def get_absolute_url(self):
+		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'Other'})
+
+	def __str__(self):
+		return 'Other'
+
+############################   NOT USED   #########################
+"""Books"""
+class BookCat(Post):
+	pass 
+
+	def get_absolute_url(self):
+		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'BookCat'})
+
+	def __str__(self):
+		return 'BookCat'
+
+class Novel(BookCat):
+	genre_list = 'Fiction Comedy Classic Biography Action Nonfiction Mystery Fantasy Drama'
+	genre_CHOICES = func_CHOICES(genre_list)
+	genre = models.CharField(max_length=lenn, choices=genre_CHOICES, default="Classic")
+	novel_author = models.CharField(max_length=lenn, default="anonymous")
+
+	def get_absolute_url(self):
+		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'Novel'})
+
+	def __str__(self):
+		return 'Novel'
+
+class Engg(BookCat):
+	branch_list = 'Computer Mechanical ENTC Chemical Civil ETX'
+	branch_CHOICES = func_CHOICES(branch_list)
+	branch = models.CharField(max_length=lenn, choices=branch_CHOICES, default="Computer")
+	subject = models.CharField(max_length=lenn, default="Computer Networks")
+
+	def get_absolute_url(self):
+		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'Engg'})
+
+	def __str__(self):
+		return 'Engg'
+
+class School(BookCat):
+	board_list = 'CBSE StateBoard other'
+	board_CHOICES = func_CHOICES(board_list)
+	board = models.CharField(max_length=lenn, choices=board_CHOICES, default="CBSE")
+	std_list = '1 2 3 4 5 6 7 8 9 10 11 12'
+	std_CHOICES = func_CHOICES(std_list)
+	std = models.CharField(max_length=lenn, choices=std_CHOICES, default="12")
+	subject = models.CharField(max_length=lenn, default="Math")
+
+	def get_absolute_url(self):
+		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'School'})
+
+	def __str__(self):
+		return 'School'
+
+
+"""Two Wheeler | Vehicles"""
+class TwoWheeler(Post):#Vehicles
 	#Bikes unique fields
 	# sub_cat_CHOICES = [('Bikes', 'Bikes'), ('Scooty', 'Scooty'), ('Scooter', 'Scooter'),
 	# ('Bicycle', 'Bicycle'), ('Other', 'Other')]
-	km = models.PositiveIntegerField("KM", blank=True, null=True,  
-		help_text='KM driven')
+	km = models.PositiveIntegerField("KM", blank=True, null=True,  help_text='KM driven')
 	cc = models.PositiveIntegerField("CC", blank=True, null=True,  help_text='CC')
-	
 
+	def get_absolute_url(self):
+		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'TwoWheeler'})
+
+	def __str__(self):
+		return 'TwoWheeler'
+	
 class Bike(TwoWheeler):
 	brands_list = 'Bajaj Hero Honda Hero-honda KTM Yamaha Suzuki TVS Royal-Enfield Other'
 	brand_CHOICES = func_CHOICES(brands_list)
@@ -66,13 +177,13 @@ class Scooty(TwoWheeler):
 		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'Scooty'})
 
 # class Bicycle(Post):
-# 	brands_list = 'Hercules Hero Other'
-# 	brand_CHOICES = func_CHOICES(brands_list)
-# 	brand = models.CharField(max_length=lenn, choices=brand_CHOICES, default='Other')
-# 	gears = models.PositiveIntegerField(blank=True, default=6, help_text="How many Gears?")
+	# brands_list = 'Hercules Hero Other'
+	# brand_CHOICES = func_CHOICES(brands_list)
+	# brand = models.CharField(max_length=lenn, choices=brand_CHOICES, default='Other')
+	# gears = models.PositiveIntegerField(blank=True, default=6, help_text="How many Gears?")
 
-# 	def get_absolute_url(self):
-# 		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'Bicycle'})
+	# def get_absolute_url(self):
+	# 	return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'Bicycle'})
 
 """Mobile/Charger/Cover"""
 class MobileCat(Post):
@@ -159,58 +270,18 @@ class Keyboard(LaptopCat):
 		return 'Keyboard'
 
 
-"""Books"""
-class BookCat(Post):
-	pass 
-
-class Novel(BookCat):
-	genre_list = 'Fiction Comedy Classic Biography Action Nonfiction Mystery Fantasy Drama'
-	genre_CHOICES = func_CHOICES(genre_list)
-	genre = models.CharField(max_length=lenn, choices=genre_CHOICES, default="Classic")
-	novel_author = models.CharField(max_length=lenn, default="anonymous")
-
-	def get_absolute_url(self):
-		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'Novel'})
-
-	def __str__(self):
-		return 'Novel'
-
-class Engg(BookCat):
-	branch_list = 'Computer Mechanical ENTC Chemical Civil ETX'
-	branch_CHOICES = func_CHOICES(branch_list)
-	branch = models.CharField(max_length=lenn, choices=branch_CHOICES, default="Computer")
-	subject = models.CharField(max_length=lenn, default="Computer Networks")
-
-	def get_absolute_url(self):
-		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'Engg'})
-
-	def __str__(self):
-		return 'Engg'
-
-class School(BookCat):
-	board_list = 'CBSE StateBoard other'
-	board_CHOICES = func_CHOICES(board_list)
-	board = models.CharField(max_length=lenn, choices=board_CHOICES, default="CBSE")
-	std_list = '1 2 3 4 5 6 7 8 9 10 11 12'
-	std_CHOICES = func_CHOICES(std_list)
-	std = models.CharField(max_length=lenn, choices=std_CHOICES, default="12")
-	subject = models.CharField(max_length=lenn, default="Math")
-
-	def get_absolute_url(self):
-		return reverse('subcat-detail', kwargs={'pk': self.pk, 'model':'School'})
-
-	def __str__(self):
-		return 'School'
-
 # class Mobile(Post):
-# 	#mobile unique fields
-# 	sub_cat_CHOICES = [('Mobile', 'Mobile'), ('Charger', 'Charger'), ('Cover', 'Cover'),
-# 	('Earphone', 'Earphone/Headphone'), ('Other', 'Other')]
-# 	brand_CHOICES = [('Redmi', 'Redmi'), ('Vivo', 'Vivo'), ('OnePLus', 'OnePLus'), 
-# 	('iPhone', 'iPhone'), ('Other', 'Other')]
-# 	brand = models.CharField(max_length=lenn, choices=brand_CHOICES, default='Redmi')
+	#mobile unique fields
+	# sub_cat_CHOICES = [('Mobile', 'Mobile'), ('Charger', 'Charger'), ('Cover', 'Cover'),
+	# ('Earphone', 'Earphone/Headphone'), ('Other', 'Other')]
+	# brand_CHOICES = [('Redmi', 'Redmi'), ('Vivo', 'Vivo'), ('OnePLus', 'OnePLus'), 
+	# ('iPhone', 'iPhone'), ('Other', 'Other')]
+	# brand = models.CharField(max_length=lenn, choices=brand_CHOICES, default='Redmi')
 
 
+
+
+#****************************** ARCHIVE - OLD MODALS ****************************************#
 # from django import template
 # register = template.Library()
 

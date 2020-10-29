@@ -9,7 +9,7 @@
     {% for post in filter.qs %}
 <!-- card -->
  
-      <div class="card  rounded-0 card_shadow mx-0 pb-0" style="width: 16rem; ">
+      <div class="card  rounded-0 card_shadow mx-2 my-2 pb-0" style="width: 15rem; ">
         <!-- images -->
         {% if class_name  == "bike" %}
           <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='bike' %}"> 
@@ -31,6 +31,19 @@
         <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='keyboard' %}"> 
         {% elif class_name  == "mobilecharger" %}
         <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='mobilecharger' %}"> 
+        <!-- new cats  -->
+        {% elif class_name  == "stationery" %}
+          <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='stationery' %}"> 
+        {% elif class_name  == "electronics" %}
+          <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='electronics' %}"> 
+        {% elif class_name  == "furniture" %}
+          <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='furniture' %}"> 
+        {% elif class_name  == "vehicle" %}
+          <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='vehicle' %}"> 
+        {% elif class_name  == "household" %}
+          <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='household' %}"> 
+        {% elif class_name  == "other" %}
+          <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='other' %}"> 
         {% endif %} 
           <img class="d-block w-100" src="{{ post.img1.url }}" height="120px;" alt="First slide">
         </a>
@@ -87,6 +100,8 @@
                 {% include "blog/keyboard_list2.html" %}
             {% elif class_name  == "mouse" %}
                 {% include "blog/mouse_list2.html" %}
+            {% else  %}    
+            {% include "blog/newCat_list2.html" %}
             {% endif %}          
             <!-- details Unique end -->
             <!-- more  -->

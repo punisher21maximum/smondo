@@ -18,18 +18,21 @@
                     <div class="form-row">
                         <div class="form-group col-3 px-3"> 
                             <button type="button" class="mb-2 btn btn-secondary btn-block" data-toggle="tooltip" data-placement="top" title="In this column - all field are compulsory">
-                                <div>Mandatory to fill</div> 
+                                <div>Choose Category</div> 
                             </button>
                             
-                            {% for field in form %}
-                                {% if forloop.counter0 <= 2 %}
-                                <div class="row py-1" >
-                                    <div class="col-4">{{ field.label}} </div>
-                                    <div class="col-6" style="text-align: right; max-width: fit-content; ">{{ field|attr:"rows:5"}}</div>
-                                    <div class="col-2"></div>
+                               
+                                <div class="row py-1 list-group" id="list-example">
+                                    <div class="col-12">
+                                        <a class="list-group-item list-group-item-action" href="{% url 'subcat-create' model='stationery' %}">stationery</a>
+                                        <a class="list-group-item list-group-item-action" href="{% url 'subcat-create' model='electronics' %}">electronics</a>
+                                        <a class="list-group-item list-group-item-action" href="{% url 'subcat-create' model='furniture' %}">furniture</a>
+                                        <a class="list-group-item list-group-item-action" href="{% url 'subcat-create' model='vehicle' %}">vehicle</a>
+                                        <a class="list-group-item list-group-item-action" href="{% url 'subcat-create' model='household' %}">household</a>
+                                        <a class="list-group-item list-group-item-action" href="{% url 'subcat-create' model='other' %}">other</a> 
+                                    </div>                                     
                                 </div>
-                                {% endif %}
-                            {% endfor %}
+                               
                         </div>
                         <div class="form-group col-3 px-3 py-0"> 
                             <button type="button" class="mb-2 btn btn-secondary btn-block" data-toggle="tooltip" data-placement="top" title="In this column - fill at least one field">
@@ -37,11 +40,11 @@
                             </button>
                         
                             {% for field in form %}
-                                {% if forloop.counter0 >= 3 and forloop.counter0 <= 7 %}
+                                {% if forloop.counter0 <= 2 %}
                                 <div class="row py-1" >
-                                    <div class="col-5">{{ field.label}} </div>
-                                    <div class="col-6 "  >{{ field|attr:"cols:20"}}</div>
-                                    <!-- <div class="col-1"></div> -->
+                                    <div class="col-4">{{ field.label }}* </div>
+                                    <div class="col-7 "  >{{ field|attr:"cols:24"}}</div>
+                                    <div class="col-1"></div>
                                 </div>
                                 {% endif %}
                             {% endfor %}
@@ -52,11 +55,11 @@
                             </button>      
                             
                             {% for field in form %}
-                                {% if forloop.counter0 >= 8 and forloop.counter0 <= 11 %}
+                                {% if forloop.counter0 >= 3 and forloop.counter0 <= 7 %}
                                 <div class="row py-1" >
-                                    <div class="col-4">{{ field.label}} </div>
+                                    <div class="col-5">{{ field.label}} </div>
                                     <div class="col-6 " style="text-align: right; ">{{field}}</div>
-                                    <div class="col-2"></div>
+                                    <div class="col-1"></div>
                                 </div>
                                 {% endif %}
                             {% endfor %}
@@ -67,11 +70,11 @@
                             </button>
                         
                             {% for field in form %}
-                                {% if forloop.counter0 >= 12 %}
+                                {% if forloop.counter0 >= 8 and forloop.counter0 <= 11 %}
                                 <div class="row py-1" >
-                                    <div class="col-5">{{ field.label}} </div>
+                                    <div class="col-4">{{ field.label}} </div>
                                     <div class="col-6 mx-0" style="text-align: right;">{{field}}</div>
-                                    <div class="col-1"></div>
+                                    <div class="col-2"></div>
                                 </div>
                                 {% endif %}
                             {% endfor %}

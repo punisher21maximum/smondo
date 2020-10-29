@@ -18,7 +18,10 @@ from .models import (Post,
     Bike, Scooty, #Bicycle, 
     Mobile,  MobileCharger, #MobileCover,
     Laptop, Mouse, Keyboard,
-    Novel, Engg, School
+    Novel, Engg, School,
+    #new
+    Stationery, Electronics, Furniture,
+    Vehicle, HouseHold, Other
     )
 
 # import filters
@@ -26,7 +29,10 @@ from . filters import (
                         BikesFilter, ScootysFilter, 
                         MobilesFilter, MobileChargersFilter, 
                         LaptopsFilter,  MousesFilter, KeyboardsFilter,
-                        NovelsFilter, EnggsFilter, SchoolsFilter
+                        NovelsFilter, EnggsFilter, SchoolsFilter,
+                        #new
+                        StationerysFilter, ElectronicsFilter, FurnituresFilter,
+                        VehiclesFilter, HouseHoldsFilter, OthersFilter
                         )
 
 # import ends    
@@ -35,7 +41,11 @@ model_dict = {
     "bike": Bike, "scooty" : Scooty,  
     "mobile" : Mobile, "mobilecharger" : MobileCharger,
     "laptop" : Laptop,  "mouse" : Mouse, "keyboard" : Keyboard,
-    "novel" : Novel, "engg": Engg, "school": School
+    "novel" : Novel, "engg": Engg, "school": School,
+    #new
+    "stationery" : Stationery, "electronics" : Electronics, 
+    "furniture" : Furniture, "vehicle" : Vehicle, 
+    "household" : HouseHold, "other" : Other
     }
 
 #get my fields
@@ -56,7 +66,11 @@ def get_model_filter_func(model_name):
     "bike": BikesFilter, "scooty" : ScootysFilter,  
     "mobile" : MobilesFilter, "mobilecharger" : MobileChargersFilter,
     "laptop" : LaptopsFilter,  "mouse" : MousesFilter, "keyboard" : KeyboardsFilter,
-    "novel" : NovelsFilter, "engg":EnggsFilter, "school":SchoolsFilter
+    "novel" : NovelsFilter, "engg":EnggsFilter, "school":SchoolsFilter,
+    #new
+    "stationery" : StationerysFilter, "electronics" : ElectronicsFilter, 
+    "furniture" : FurnituresFilter, "vehicle" : VehiclesFilter, 
+    "household" : HouseHoldsFilter, "other" : OthersFilter
     }
 
     return model_filter_dict[model_name]
@@ -192,3 +206,15 @@ class SubcatDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def get_success_url(self):
         return reverse_lazy('subcat-list', kwargs={'model':self.model._meta.model_name.lower()})
 
+
+
+####################### My Posts ##########################
+class UserPostListView(ListView):
+    model = Post
+    template_name = 'blog/user_posts.html'  # <app>/<model>_<viewtype>.html
+    context_object_name = 'posts'
+    paginate_by = 5
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Post.objects.filter(author=user).order_by('-date_posted')

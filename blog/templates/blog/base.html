@@ -26,52 +26,63 @@
 <!-- background-color:#563d7c; -->
 <body >
     <header class="site-header intro">
-      <nav class="navbar navbar-expand-md    fixed-top py-2 px-5 text-white"
+   
+      <nav class="navbar navbar-expand-sm    fixed-top py-2 px-5 text-white"
         style="background-color:#563d7c; font-weight:600; font-size: 16px;">
           <!-- <div class="container"> -->
                
               <a class="navbar-brand mr-4 text-white" href="#"><b>CONVIMAX</b></a>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             
                
               <!-- dropdown -->
-              <form class="form-inline my-2 my-lg-0 ">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search Book, Car, Bike and More" aria-label="Search"
-                  style="width:500px">
-                  <button class="btn btn-outline-white my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-              </form>
+       
               
               <!-- dropdown end -->
-              <div class="collapse navbar-collapse" id="navbarToggle">
-                <div class="navbar-nav mr-auto">
-                  <a class="nav-item nav-link" href="#"></a>  
-                </div>
+              <button class="navbar-toggler text-white" data-toggle="collapse" data-target="#navbarMenu">
+                <span class="navbar-toggler-icon text-white"></span>
+              </button>
+              <div class="collapse navbar-collapse text-white" id="navbarMenu">
+                <ul class="navbar-nav ml-auto">
                 
                 <!-- Navbar Right Side -->
-                <div class="navbar-nav text-white">
+                  
                   {% if user.is_authenticated %}
-                    <a class="nav-item nav-link text-white" href="#">
-                      <i class="fa fa-plus"></i> Sell 
-                    </a>
-                    <a class="nav-item nav-link text-white" href="#">
-                      My Posts <i class="fa fa-sticky-note"></i>
-                    </a>
-                    <a class="nav-item nav-link text-white" href="#">
-                      Starred <i class="fa fa-star"></i>
-                    </a>
-                    <!-- <a class="nav-item nav-link" href="#">{{ user.profile.first_name }}</a> -->
-                    <a class="nav-item nav-link text-white" href="{% url 'profile' %}">
-                      Profile <i class="fa fa-user"></i>
-                    </a>
-                    <a class="nav-item nav-link text-white" href="{% url 'logout' %}">
-                      Logout <i class="fa fa-sign-out" aria-hidden="true"></i>
-                    </a>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="#">
+                        <i class="fa fa-plus"></i> Sell 
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="#">
+                        My Posts <i class="fa fa-sticky-note"></i>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="#">
+                        Starred <i class="fa fa-star"></i>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="{% url 'profile' %}">
+                        Profile <i class="fa fa-user"></i>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="{% url 'logout' %}">
+                        Logout <i class="fa fa-sign-out" aria-hidden="true"></i>
+                      </a>
+                    </li>                 
                   {% else %}
-                    <a class="nav-item nav-link text-white" href="{% url 'login' %}">Login</a>
-                    <a class="nav-item nav-link text-white" href="{% url 'register' %}">Register</a>
+                  <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'register' %}">Register</a>
+                  </li>
                   {% endif %}
-                </div>
+            
+
+                </ul>
               </div>
 
           <!-- </div> -->
@@ -79,25 +90,23 @@
       </nav>
        
       <nav class="navbar navbar-expand-md navbar-dark py-0 px-5  fixed-top"
-        style="background-color:#563d7c; font-weight: 500; font-size: 15px; margin-top:50px;">
-          <!-- <div class="container"> -->
-              <!-- dropdown -->
-              <button class="btn btn-white my-2 text-white" style="background-color:#563d7c" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                <b>{{"All categories"|upper}}  <i class="fa fa-caret-down"></i></b>
-              </button>
-              <!-- dropdown end -->
-              <div class="navbar-nav mr-auto text-white ml-3">
-                <a class="nav-item nav-link mx-3 text-white" href="{% url 'subcat-list' model='bike' %}">Bikes <i class="fa fa-motorcycle"> </i> </a>
-                <a class="nav-item nav-link mx-3 text-white" href="{% url 'subcat-list' model='scooty' %}">Scootys <i class="fa fa-motorcycle"> </i></a>
-                <a class="nav-item nav-link mx-3 text-white" href="{% url 'subcat-list' model='novel' %}">Novels <i class="fa fa-book"> </i></a>
-                <a class="nav-item nav-link mx-3 text-white" href="{% url 'subcat-list' model='mobile' %}">Mobiles <i class="fa fa-mobile"> </i></a>
-                <a class="nav-item nav-link mx-3 text-white" href="{% url 'subcat-list' model='mouse' %}">Mouses <i class="fas fa-mouse"></i></a>  
-                <a class="nav-item nav-link mx-3 text-white" href="{% url 'subcat-list' model='keyboard' %}">Keyboards <i class="far fa-keyboard"></i></a>  
-                <a class="nav-item nav-link mx-3 text-white" href="{% url 'subcat-list' model='laptop' %}">Laptops <i class="fa fa-laptop"> </i></a>  
-                <a class="nav-item nav-link mx-3 text-white" href="{% url 'subcat-list' model='mobilecharger' %}">Mobile Chargers <i class="fa fa-charger"> </i></a>  
-              </div>
-          <!-- </div> -->
-      </nav>
+style="background-color:#563d7c; font-weight: 500; font-size: 15px; margin-top:50px;">
+  <!-- <div class="container"> -->
+      <!-- dropdown -->
+      <button class="btn btn-white my-2 text-white" style="background-color:#563d7c" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <b>{{"All categories"|upper}}  <i class="fa fa-caret-down"></i></b>
+      </button>
+      <!-- dropdown end -->
+      <div class="navbar-nav mr-auto text-white ml-3">
+        <a class="nav-item nav-link mx-3 text-white" href="{% url 'subcat-list' model='stationery' %}">Books <i class="fa fa-motorcycle"> </i> </a>
+        <a class="nav-item nav-link mx-3 text-white" href="{% url 'subcat-list' model='electronics' %}">Electronics <i class="fa fa-motorcycle"> </i></a>
+        <a class="nav-item nav-link mx-3 text-white" href="{% url 'subcat-list' model='furniture' %}">Furniture <i class="fa fa-book"> </i></a>
+        <a class="nav-item nav-link mx-3 text-white" href="{% url 'subcat-list' model='vehicle' %}">Vehicle <i class="fa fa-mobile"> </i></a>
+        <a class="nav-item nav-link mx-3 text-white" href="{% url 'subcat-list' model='household' %}">household <i class="fas fa-mouse"></i></a>  
+        <a class="nav-item nav-link mx-3 text-white" href="{% url 'subcat-list' model='other' %}">Other <i class="far fa-keyboard"></i></a>  
+      </div>
+  <!-- </div> -->
+</nav>
 <!-- all cat -->
 <div class="collapse fixed-top"  id="collapseExample" style="margin-top:100px; font-weight: 800;" >
   <div class="card card-body" style="background-color:white; color:rgb(56, 11, 56);">
@@ -262,6 +271,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
     <script>
       $(function () {
         $('[data-toggle="tooltip"]').tooltip()

@@ -4,7 +4,10 @@ from .models import (Post,
     Bike, Scooty, #Bicycle, 
     Mobile,  MobileCharger, #MobileCover,
     Laptop, Mouse, Keyboard,
-    Novel, Engg, School
+    Novel, Engg, School,
+    #new
+    Stationery, Electronics, Furniture,
+    Vehicle, HouseHold, Other
     )
 
 from django.forms.widgets import TextInput
@@ -59,6 +62,133 @@ class CommonFilter(django_filters.FilterSet):
 	widget=TextInput(attrs={'placeholder': 'max'}))
 
 
+class StationerysFilter(CommonFilter):
+
+	title = django_filters.CharFilter(lookup_expr='icontains', label='Title', 
+	widget=TextInput(attrs={'placeholder': 'search...'}))
+
+	class Meta:
+		model = Stationery
+		fields = (
+	
+			'title',
+			'desc',
+		 	'year',
+		
+			'sell_price',
+			'rent_hour',
+			'rent_day',
+			'rent_week',
+			'rent_month',
+
+		)
+
+class ElectronicsFilter(CommonFilter):
+
+	title = django_filters.CharFilter(lookup_expr='icontains', label='Title', 
+	widget=TextInput(attrs={'placeholder': 'search...'}))
+
+	class Meta:
+		model = Electronics
+		fields = (
+	
+			'title',
+			'desc',
+		 	'year',
+		
+			'sell_price',
+			'rent_hour',
+			'rent_day',
+			'rent_week',
+			'rent_month',
+
+		)
+
+class FurnituresFilter(CommonFilter):
+
+	title = django_filters.CharFilter(lookup_expr='icontains', label='Title', 
+	widget=TextInput(attrs={'placeholder': 'search...'}))
+
+	class Meta:
+		model = Furniture
+		fields = (
+	
+			'title',
+			'desc',
+		 	'year',
+		
+			'sell_price',
+			'rent_hour',
+			'rent_day',
+			'rent_week',
+			'rent_month',
+
+		)
+
+class VehiclesFilter(CommonFilter):
+
+	title = django_filters.CharFilter(lookup_expr='icontains', label='Title', 
+	widget=TextInput(attrs={'placeholder': 'search...'}))
+
+	class Meta:
+		model = Vehicle
+		fields = (
+	
+			'title',
+			'desc',
+		 	'year',
+		
+			'sell_price',
+			'rent_hour',
+			'rent_day',
+			'rent_week',
+			'rent_month',
+
+		)
+
+class HouseHoldsFilter(CommonFilter):
+
+	title = django_filters.CharFilter(lookup_expr='icontains', label='Title', 
+	widget=TextInput(attrs={'placeholder': 'search...'}))
+
+	class Meta:
+		model = HouseHold
+		fields = (
+	
+			'title',
+			'desc',
+		 	'year',
+		
+			'sell_price',
+			'rent_hour',
+			'rent_day',
+			'rent_week',
+			'rent_month',
+
+		)
+
+class OthersFilter(CommonFilter):
+
+	title = django_filters.CharFilter(lookup_expr='icontains', label='Title', 
+	widget=TextInput(attrs={'placeholder': 'search...'}))
+
+	class Meta:
+		model = Other
+		fields = (
+	
+			'title',
+			'desc',
+		 	'year',
+		
+			'sell_price',
+			'rent_hour',
+			'rent_day',
+			'rent_week',
+			'rent_month',
+
+		)
+
+########################   NOT USED   ################################
 class BikesFilter(CommonFilter):
 	# # common: price - 5, min max, year - min max, desc - contains
 	# title = django_filters.CharFilter(lookup_expr='icontains', label='Title', 
