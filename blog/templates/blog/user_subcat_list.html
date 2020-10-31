@@ -1,0 +1,138 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% load myfilters %}
+
+
+{% block content %}
+
+  <div class="row pl-5   pb-0" >
+    {% for post in filter.qs %}
+<!-- card -->
+ 
+      <div class="card  rounded-0 card_shadow mx-2 my-2 pb-0" style="width: 15rem; ">
+        <!-- images -->
+        {% if class_name  == "bike" %}
+          <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='bike' %}"> 
+        {% elif class_name  == "scooty" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='scooty' %}"> 
+        {% elif class_name  == "mobile" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='mobile' %}"> 
+        {% elif class_name  == "novel" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='novel' %}">
+        {% elif class_name  == "engg" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='engg' %}">  
+        {% elif class_name  == "school" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='school' %}">  
+        {% elif class_name  == "laptop" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='laptop' %}">  
+        {% elif class_name  == "mouse" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='mouse' %}">  
+        {% elif class_name  == "keyboard" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='keyboard' %}"> 
+        {% elif class_name  == "mobilecharger" %}
+        <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='mobilecharger' %}"> 
+        <!-- new cats  -->
+        {% elif class_name  == "stationery" %}
+          <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='stationery' %}"> 
+        {% elif class_name  == "electronics" %}
+          <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='electronics' %}"> 
+        {% elif class_name  == "furniture" %}
+          <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='furniture' %}"> 
+        {% elif class_name  == "vehicle" %}
+          <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='vehicle' %}"> 
+        {% elif class_name  == "household" %}
+          <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='household' %}"> 
+        {% elif class_name  == "other" %}
+          <a class="article-title" href="{% url 'subcat-detail' pk=post.id model='other' %}"> 
+        {% endif %} 
+          <img class="d-block w-100" src="{{ post.img1.url }}" height="120px;" alt="First slide">
+        </a>
+
+        <!-- images end -->
+        <div class="py-1 px-2 " style="font-weight: 500;">
+            <div class="row">
+              <div class="col-5" style="font-size: 15px;">
+                <button type="button" class="btn btn-secondary btn-sm py-1" data-toggle="tooltip" data-placement="right" title="{{post.desc|truncatechars:100}}">
+                  {{post.title|truncatechars:12}}
+                </button> 
+              </div>
+              <div class="col-7" style="font-size: 15px;  text-align: right;">Rs {{post.sell_price}}/-</div> 
+            </div>
+            <!-- <small>{{post.date_posted|date:"M t, Y"}}</small> -->
+            <!-- <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="{{post.desc}}">Click to toggle popover</button> -->
+            <!-- {{post.desc|truncatechars:15}} -->
+            
+            <!-- price  -->
+            <table class="table table-sm table-hover mb-0 mt-1" style="font-size: 12px; ;">
+              <tbody>
+                <tr class="py-0">
+                  <th>Month</th>
+                  <td>{{post.rent_month}}/-</td>
+                  <th>Week</th>
+                  <td>{{post.rent_week}}/-</td>
+                </tr>
+                <tr>
+                  <th>Day</th>
+                  <td>{{post.rent_week}}/-</td>
+                  <th>Hour</th>
+                  <td>{{post.rent_hour}}/-</td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- price end  -->
+ 
+            <!-- details Unique --> 
+            {% if class_name  == "bike" %}
+                {% include "blog/bike_list2.html" %}
+            {% elif class_name  == "scooty" %}
+                {% include "blog/scooty_list2.html" %}
+            {% elif class_name  == "mobile" %}
+                {% include "blog/mobile_list2.html" %}
+            {% elif class_name  == "novel" %}
+                {% include "blog/novel_list2.html" %}
+            {% elif class_name  == "engg" %}
+                {% include "blog/engg_list2.html" %}
+            {% elif class_name  == "school" %}
+                {% include "blog/school_list2.html" %}
+            {% elif class_name  == "laptop" %}
+                {% include "blog/laptop_list2.html" %}
+            {% elif class_name  == "keyboard" %}
+                {% include "blog/keyboard_list2.html" %}
+            {% elif class_name  == "mouse" %}
+                {% include "blog/mouse_list2.html" %}
+            {% else  %}    
+            {% include "blog/newCat_list2.html" %}
+            {% endif %}          
+            <!-- details Unique end -->
+            <!-- more  -->
+            
+              <!-- {% include "blog/link_to_detail.html" %} -->
+            
+            <!-- more end -->
+            <!-- contact details  -->
+              <!-- <small class="text-justify pl-1">{{post.author.profile.phone_number}}, {{ post.author.profile.society }},
+                {{ post.author.profile.bldg }}-{{ post.author.profile.floor }}0{{ post.author.profile.flat_no }}
+              </small> -->
+            <!-- contact details end -->
+        </div>
+        
+            
+      </div>
+        
+<!-- card end -->
+
+    {% endfor %}
+  </div>
+<!-- pagination start -->
+  <div class="my-4">
+    {% if is_paginated %}
+      {% include "blog/page_nav.html" %}
+    {% endif %}
+  </div>
+<!-- pagination end -->    
+{% endblock content %}
+ 
+{% block filters %}
+    {% include "blog/filters.html" %}
+{% endblock filters %}
+

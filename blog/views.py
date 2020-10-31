@@ -209,12 +209,9 @@ class SubcatDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 ####################### My Posts ##########################
-class UserPostListView(ListView):
-    model = Post
-    template_name = 'blog/user_posts.html'  # <app>/<model>_<viewtype>.html
-    context_object_name = 'posts'
-    paginate_by = 5
+class UserSubcatListView(SubcatListView):
+    
+    template_name = 'blog/user_subcat_list.html'
 
     def get_queryset(self):
-        user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Post.objects.filter(author=user).order_by('-date_posted')
+        return self.model.objects.filter(author=self.request.user)

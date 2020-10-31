@@ -53,7 +53,7 @@
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-white" href="#">
+                      <a class="nav-link text-white" href="{% url 'user-subcat-list' model='stationery' %}">
                         My Posts <i class="fa fa-sticky-note"></i>
                       </a>
                     </li>
@@ -189,6 +189,19 @@ style="background-color:#563d7c; font-weight: 500; font-size: 15px; margin-top:5
           
           <!-- main -->
           <div class="row"> 
+            <!-- bread start  -->
+            <div class="ml-5">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item active" aria-current="page">
+                    <a class="article-title" href="{% url 'subcat-list' model='stationery' %}">
+                      Home
+                    </a>
+                  </li>
+                </ol>
+              </nav>
+            </div>
+           <!-- bread end  -->
             <div class="col-md-12">
               {% block update %}
               {% endblock %} 
