@@ -1,25 +1,22 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
-{% load google_analytics_tags %}
-<div style="display:none">
-    <img src="{% google_analytics %}" width="0" height="0" />
-</div>
-{% block content %}
-    <div class="content-section">
+ 
+{% block update %}
+    <div class="col-12   offset-md-4  col-md-4 custom_form text-white" style="background-color:#563d7c;">
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Join Today</legend>
                 {{ form|crispy }}
             </fieldset>
-            <div class="form-group">
+            <div class="form-group  text-center">
                 <button class="btn btn-outline-info" type="submit">Sign Up</button>
             </div>
         </form>
-        <div class="border-top pt-3">
+        <div class="border-top pt-3 text-center">
             <small class="text-muted">
                 Already Have An Account? <a class="ml-2" href="#">Sign In</a>
             </small>
         </div>
     </div>
-{% endblock content %}
+{% endblock update %}

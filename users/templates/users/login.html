@@ -1,29 +1,24 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
-
-
-<div class="row content-section "> 
-{% block content %}
-    
-        <!-- <div class="col-4"></div> -->
-        <div class="">
-            <form method="POST">
-                {% csrf_token %}
-                <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">Log In</legend>
-                    {{ form|crispy }}
-                </fieldset>
-                <div class="form-group">
-                    <button class="btn btn-outline-info" type="submit">Login</button>
-                </div>
-            </form>
-            <div class="border-top pt-3">
-                <small class="text-muted">
-                    Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
-                </small>
+{% load static %}
+{% block update %}
+    <div class="col-12   offset-md-4  col-md-4   p-3 mb-2 custom_form text-white" 
+    style="background-color:#563d7c;">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Log In</legend>
+                {{ form|crispy }}
+            </fieldset>
+     
+            <div class="form-group">
+                <button class="btn btn-default btn-block " type="submit" style="color:#563d7c;"><b>Login</b></button>
             </div>
+        </form>
+        <div class="border-top pt-3 text-white" style="text-align: center;">
+            <small class="text-muted ">
+                <p class="text-white">Need An Account?  <a class="ml-2 text-white" href="{% url 'register' %}"><b>Sign Up Now</b></a> </p>
+            </small>
         </div>
-        <!-- <div class="col-4"></div> -->
-    
-{% endblock content %}
-</div>
+    </div>
+{% endblock update %}

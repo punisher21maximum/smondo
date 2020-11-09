@@ -27,7 +27,7 @@ urlpatterns = [
     #subcat
     path('<str:model>/new/', SubcatCreateView.as_view(), name='subcat-create'),
     path('<str:model>/', SubcatListView.as_view(), name='subcat-list'), 
-    path('<str:model>/', UserSubcatListView.as_view(), name='user-subcat-list'),
+    path('<str:model>/myposts/', UserSubcatListView.as_view(), name='user-subcat-list'),
     path('<str:model>/<int:pk>/', SubcatDetailView.as_view(), name='subcat-detail'), 
     path('<str:model>/<int:pk>/update/', SubcatUpdateView.as_view(), name='subcat-update'),
     path('<str:model>/<int:pk>/delete/', SubcatDeleteView.as_view(), name='subcat-delete'),

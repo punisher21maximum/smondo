@@ -142,7 +142,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #required to redirect login after logged in
 #to redirect user after successful login to 'index' instead of deafult:'accounts/profile'
 from django.urls import reverse_lazy
-LOGIN_REDIRECT_URL = reverse_lazy('subcat-list', kwargs={'model':'Bike'})
+LOGIN_REDIRECT_URL = reverse_lazy('subcat-list', kwargs={'model':'bike'})
 LOGIN_URL = 'login'
 
 #reset password

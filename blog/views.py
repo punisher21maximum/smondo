@@ -207,11 +207,12 @@ class SubcatDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return reverse_lazy('subcat-list', kwargs={'model':self.model._meta.model_name.lower()})
 
 
-
 ####################### My Posts ##########################
 class UserSubcatListView(SubcatListView):
     
-    template_name = 'blog/user_subcat_list.html'
+    template_name = 'blog/user_subcat_list.html' # <app>/<model>_<viewtype>.html
 
+    """ "get_queryset" also Required to override model name """
     def get_queryset(self):
-        return self.model.objects.filter(author=self.request.user)
+        return self.model.objects.filter(author = self.request.user)
+

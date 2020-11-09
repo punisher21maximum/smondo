@@ -1,61 +1,61 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
- 
- 
-{% block content %}
-  <div class="row  ml-0 px-5" 
-  style="justify-content: center; font-weight: 600; font-size: 14px;">
-      <div class="col-10 content-section ">
-      <div class="media mb-0">
-        <img class="rounded-circle account-img mr-3" src="{{ user.profile.image.url }}">
-    
-      </div>
-      <!-- {{ u_form|crispy }}  -->
-      <!-- {{ p_form|crispy }}  -->
-      <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <fieldset class="form-group mt-0">
-            <h6 class="border-bottom mb-1">Profile Info</h6>
-            <div class="form-row p-0 mt-0">
-              <div class="form-group col-md-4  py-0  my-0">
-                {{"Username"}}
-              </div>
-              <div class="form-group col-md-8  py-0 my-0 " >
-                {{ u_form.username }}
-              </div>
-            </div>
+{% load static %}
 
-            <div class="form-row p-0 mt-1">
-              <div class="form-group col-md-4  py-0  my-0">
-                {{"Email"}}
-              </div>
-              <div class="form-group col-md-8  py-0 my-0 " >
-                {{ u_form.email }}
-              </div>
-            </div>
+{% block update %}
+<div class="col-30 " style="  font-weight: 600; font-size: 14px; 
+     ">
+  <div class="content-section ">
+    <div class="media mb-0">
+      <img class="rounded-circle account-img mr-3" src="{{ user.profile.image.url }}">
 
-            <div class="form-row p-0 mt-1">
-              <div class="form-group col-md-4  py-0  my-0">
-                {{"Name"}}
-              </div>
-              <div class="form-group col-md-4  py-0 my-0 " >
-                {{ p_form.first_name }}
-              </div>
-              <div class="form-group col-md-4  py-0 my-0 " >
-                {{ p_form.last_name }}
-              </div>
-            </div>
+    </div>
+    <!-- {{ u_form|crispy }}  -->
+    <!-- {{ p_form|crispy }}  -->
+    <form method="POST" enctype="multipart/form-data" >
+      {% csrf_token %}
+      <fieldset class="form-group mt-0">
+        <h6 class="border-bottom mb-1">Profile Info</h6>
+        <div class="form-row p-0 mt-0">
+          <div class="form-group col-md-4  py-0  my-0">
+            {{"Username"}}
+          </div>
+          <div class="form-group col-md-8  py-0 my-0 ">
+            {{ u_form.username }}
+          </div>
+        </div>
 
-            <div class="form-row p-0 mt-1">
-              <div class="form-group col-md-4  py-0  my-0">
-                {{"Ph. number"}}
-              </div>
-              <div class="form-group col-md-8  py-0 my-0 " >
-                {{ p_form.phone_number }}
-              </div>
-            </div>
+        <div class="form-row p-0 mt-1">
+          <div class="form-group col-md-4  py-0  my-0">
+            {{"Email"}}
+          </div>
+          <div class="form-group col-md-8  py-0 my-0 ">
+            {{ u_form.email }}
+          </div>
+        </div>
 
-            <!-- <div class="form-row p-0 mt-1">
+        <div class="form-row p-0 mt-1">
+          <div class="form-group col-md-4  py-0  my-0">
+            {{"Name"}}
+          </div>
+          <div class="form-group col-md-4  py-0 my-0 ">
+            {{ p_form.first_name }}
+          </div>
+          <div class="form-group col-md-4  py-0 my-0 ">
+            {{ p_form.last_name }}
+          </div>
+        </div>
+
+        <div class="form-row p-0 mt-1">
+          <div class="form-group col-md-4  py-0  my-0">
+            {{"Ph. number"}}
+          </div>
+          <div class="form-group col-md-8  py-0 my-0 ">
+            {{ p_form.phone_number }}
+          </div>
+        </div>
+
+        <!-- <div class="form-row p-0 mt-1">
               <div class="form-group col-md-4  py-0  my-0">
                 {{"Update image"}}
               </div>
@@ -64,41 +64,41 @@
               </div>
             </div> -->
 
-            <h6 class="border-bottom mb-1">Address</h6>
-            <div class="form-row p-0 mt-1">
-              <div class="form-group col-md-3  py-0  my-0">
-                <!-- {{ p_form.society.label }} -->
-              </div>
-              <div class="form-group col-md-3  py-0 my-0  " >
-                {{ "Building" }}
-              </div>
-              <div class="form-group col-md-3  py-0 my-0 " >
-                {{ "Floor" }}
-              </div>
-              <div class="form-group col-md-3 py-0 my-0 " >
-                {{ "Flat" }}
-              </div>
-            </div>
-            <div class="form-row p-0 mt-1">
-              <div class="form-group col-md-3  py-0  my-0">
-                {{ "Smondo 3.0" }}
-              </div>
-              <div class="form-group col-md-3  py-0 my-0  " >
-                {{ p_form.bldg }}
-              </div>
-              <div class="form-group col-md-3  py-0 my-0 " >
-                {{ p_form.floor }}
-              </div>
-              <div class="form-group col-md-3 py-0 my-0 " >
-                {{ p_form.flat_no }}
-              </div>
-            </div>
-          
-        </fieldset>
-        <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Update</button>
+        <h6 class="border-bottom mb-1">Address</h6>
+        <div class="form-row p-0 mt-1">
+          <div class="form-group col-md-3  py-0  my-0">
+            <!-- {{ p_form.society.label }} -->
+          </div>
+          <div class="form-group col-md-3  py-0 my-0  ">
+            {{ "Building" }}
+          </div>
+          <div class="form-group col-md-3  py-0 my-0 ">
+            {{ "Floor" }}
+          </div>
+          <div class="form-group col-md-3 py-0 my-0 ">
+            {{ "Flat" }}
+          </div>
         </div>
-      </form>
-    </div>
-    </div>
-{% endblock content %}
+        <div class="form-row p-0 mt-1">
+          <div class="form-group col-md-3  py-0  my-0">
+            {{ "Smondo 3.0" }}
+          </div>
+          <div class="form-group col-md-3  py-0 my-0  ">
+            {{ p_form.bldg }}
+          </div>
+          <div class="form-group col-md-3  py-0 my-0 ">
+            {{ p_form.floor }}
+          </div>
+          <div class="form-group col-md-3 py-0 my-0 ">
+            {{ p_form.flat_no }}
+          </div>
+        </div>
+
+      </fieldset>
+      <div class="form-group">
+        <button class="btn btn-outline-info" type="submit">Update</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock update %}
