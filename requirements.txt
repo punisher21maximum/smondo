@@ -9,7 +9,7 @@ importlib-metadata==1.6.0
 protobuf==3.12.0rc1
 pyshorteners==1.0.1
 pytz==2020.1
-pywin32==227
+pywin32==301
 social-auth-core==3.3.3
 speedtest-cli==2.1.2
 sqlparse==0.3.1
